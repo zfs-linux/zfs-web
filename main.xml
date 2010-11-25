@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"/usr/share/xml/docbook/schema/dtd/4.4/docbookx.dtd">
+<book>
+<bookinfo>
+<title>ZFS Web Site</title>
+</bookinfo>
+
+<chapter><title>Landing Page</title>
+<sect1><title>main body</title>
+<para>
+Knowledge Quest Infotech is proud to present the Technology Preview
+(beta) of the ZFS* port to Linux. We are inviting participants for our
+beta phase. If you are interested in our beta program please apply
+here.
+
+Why port ZFS to linux ? We believe that ZFS is a very innovative
+filesystem which has taken a fresh and intuitive approach to storage
+systems. Anyone who has used ZFS cannot deny being impressed by its
+power and simplicity. We believe that ZFS should be available to a
+larger Audience for use. And it is this belief that drives us to
+deliver this port to linux.
+
+Our port of ZFS is an extension to the port of DMU layer by Brian
+Behlendorf. We have added the missing ZPL layer to Brian's port. With
+this addition it becomes possible to mount the zfs filesystem on linux
+and leverage ZFS's features on linux.
+
+If you have any questions regarding this port please visit our FAQ. If
+you want to contact us please drop us a mail at
+zfs-query@kqinfotech.com
+
+*ZFS is a trademark of Oracle.
+</para>
+</sect1>
+
+<sect1><title>Our Approach</title>
+<para>
+It's in our DNA. Placing our clients first is embedded in the KQ
+culture. By investing in our people and resources, we bring new ideas
+and innovation to help you succeed in a changing business environment.
+</para>
+</sect1>
+
+<sect1><title>Consulting Service</title>
+<para>
+KQ offers a variety of consulting servicesin the field of systems and
+storage tailored to your needs. Leverage KQ's expertise in ZFS and
+Systems programming by opting for consulting services. Click here to
+know more about ZFS consulting services.
+</para>
+</sect1>
+
+<sect1><title>KQ 2.0</title>
+<para>
+KQ 2.0 By employing the KQ 2.0 platform, we can bring the best people,
+resources and capabilities of our global delivery system to any
+client, anywhere
+</para>
+</sect1>
+</chapter>
+
+
+</book>
