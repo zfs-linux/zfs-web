@@ -23,13 +23,13 @@
 </para>
 
 <para>
-  The commands and procedures required to build freash modules from
+  The commands and procedures required to build fresh modules from
   source are listed below. Please note that some of the tools used in
   the procedure might not be installed on your machine and the error
   that result don't always clearly indicate that the package was
   missing.
   <screen>
-<prompt>/tmp $</prompt> <command> git clone git://github.com/zfs-linux/spl.git</command>
+<prompt>/tmp$</prompt> <command> git clone git://github.com/zfs-linux/spl.git</command>
 Initialized empty Git repository in /tmp/spl/.git/
 remote: Counting objects: 4266, done.
 remote: Compressing objects: 100% (1144/1144), done.
@@ -39,7 +39,8 @@ Resolving deltas: 100% (3155/3155), done.
 <prompt>/tmp$</prompt> <command>git clone git://github.com/zfs-linux/zfs.git</command>
 Initialized empty Git repository in /tmp/zfs/.git/
 remote: Counting objects: 68496, done.
-remote: Compressing objects:   3% (631/21029)   
+remote: Compressing objects:   3% (631/21029)  
+.... 
 <prompt>/tmp$</prompt> <command>git clone git://github.com/zfs-linux/lzfs.git</command>
 Initialized empty Git repository in /tmp/lzfs/.git/
 remote: Counting objects: 173, done.
@@ -47,13 +48,97 @@ remote: Compressing objects: 100% (152/152), done.
 remote: Total 173 (delta 92), reused 38 (delta 16)
 Receiving objects: 100% (173/173), 199.19 KiB | 103 KiB/s, done.
 Resolving deltas: 100% (92/92), done.
-<prompt>/tmp$ </prompt><command>./configure</command>
+<prompt>/tmp$ </prompt><command>cd spl</command>
+<prompt>/tmp/spl$ </prompt><command>./configure --with-linux=/lib/modules/2.6.32-24-server/build</command>
 checking metadata... yes
 checking build system type... x86_64-unknown-linux-gnu
 checking host system type... x86_64-unknown-linux-gnu
 checking target system type... x86_64-unknown-linux-gnu
+checking whether to enable maintainer-specific portions of Makefiles... no
+checking for a BSD-compatible install... /usr/bin/install -c
 ....
-<prompt>/tmp$ </prompt><command>./configure</command>
+<prompt>/tmp/spl$ </prompt><command>make</command>
+make  all-recursive
+make[1]: Entering directory `/tmp/spl'
+Making all in lib
+make[2]: Entering directory `/tmp/spl/lib'
+/bin/bash ../libtool  --tag=CC --silent  --mode=compile gcc -DHAVE_CONFIG_H -include
+../spl_config.h    -Wall -Wshadow -Wstrict-prototypes -fno-strict-aliasing
+-D__USE_LARGEFILE64 -DNDEBUG -g -O
+....
+<prompt>/tmp/spl$ </prompt><command>cd ../zfs/</command>
+<prompt>/tmp/zfs$ </prompt><command>./configure --with-linux=/lib/modules/2.6.32-24-server/build
+                      --with-spl=/tmp/spl/</command>
+checking metadata... yes
+checking build system type... x86_64-unknown-linux-gnu
+checking host system type... x86_64-unknown-linux-gnu
+checking target system type... x86_64-unknown-linux-gnu
+checking whether to enable maintainer-specific portions of Makefiles... no
+....
+<prompt>/tmp/zfs$ </prompt><command>make</command>
+make  all-recursive
+make[1]: Entering directory `/tmp/zfs'
+Making all in etc
+make[2]: Entering directory `/tmp/zfs/etc'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/tmp/zfs/etc'
+....
+<prompt>/tmp/zfs$ </prompt><command>cd ../lzfs/</command>
+<prompt>/tmp/lzfs$ </prompt><command>./configure --with-linux=/lib/modules/2.6.32-24-server/build
+                       --with-spl=/tmp/spl/ 
+                       --with-zfs=/tmp/zfs/</command>
+checking metadata... yes
+checking build system type... x86_64-unknown-linux-gnu
+checking host system type... x86_64-unknown-linux-gnu
+checking target system type... x86_64-unknown-linux-gnu
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+....
+<prompt>/tmp/lzfs$ </prompt><command>make</command>
+make  all-recursive
+make[1]: Entering directory `/tmp/lzfs'
+Making all in module
+make[2]: Entering directory `/tmp/lzfs/module'
+make -C /lib/modules/2.6.32-24-server/build SUBDIRS=`pwd` V=1 modules
+....
+<prompt>/tmp/lzfs$ </prompt><command>cd ../zfs/scripts/</command>
+<prompt>/tmp/zfs/scripts$ </prompt><command>./zfs.sh -v</command>
+Loading zlib_deflate (/lib/modules/2.6.32-24-server/kernel/lib/
+zlib_deflate/zlib_deflate.ko)
+Loading spl (/tmp/spl//module/spl/spl.ko)
+Loading splat (/tmp/spl//module/splat/splat.ko)
+Loading zavl (/tmp/zfs/module/avl/zavl.ko)
+Loading znvpair (/tmp/zfs/module/nvpair/znvpair.ko)
+....
+<prompt>/tmp/zfs/scripts$ </prompt><command>insmod /tmp/lzfs/module/lzfs.ko</command>
+<prompt>/tmp/zfs/scripts$ </prompt><command>cd /tmp/spl/</command>
+<prompt>/tmp/spl$ </prompt><command>make install</command>
+Making install in lib
+make[1]: Entering directory `/tmp/spl/lib'
+make[2]: Entering directory `/tmp/spl/lib'
+make[2]: Nothing to be done for `install-exec-am'.
+make[2]: Nothing to be done for `install-data-am'.
+....
+<prompt>/tmp/spl$ </prompt><command>cd ../zfs/</command>
+<prompt>/tmp/zfs$ </prompt><command>make install</command>
+Making install in etc
+make[1]: Entering directory `/tmp/zfs/etc'
+make[2]: Entering directory `/tmp/zfs/etc'
+test -z "/etc" || /bin/mkdir -p "/etc"
+/bin/mkdir -p '/etc/../etc/udev/rules.d'
+....
+<prompt>/tmp/zfs$ </prompt><command>cd ../lzfs/</command>
+<prompt>/tmp/lzfs$ </prompt><command>make install</command>
+Making install in module
+make[1]: Entering directory `/tmp/lzfs/module'
+make -C /lib/modules/2.6.32-24-server/build SUBDIRS=`pwd` \
+		INSTALL_MOD_PATH= \
+		INSTALL_MOD_DIR=addon/lzfs modules_install
+....
+<prompt>/tmp/lzfs$ </prompt><command>lsmod | grep lzfs</command>
+lzfs                   28371  0 
+zfs                   964150  1 lzfs
+spl                   120247  7 lzfs,zfs,zcommon,zunicode,znvpair,zavl,splat
   </screen>
   
 </para>
