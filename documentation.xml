@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"/usr/share/xml/docbook/schema/dtd/4.4/docbookx.dtd">
+<book>
+<bookinfo>
+<title>ZFS Linux Developers Reference</title>
+</bookinfo>
+
+<chapter><title>Developers Reference</title>
+<sect1><title>Getting and Building from source</title>
+<para>
+  The ZFS on linux functionality is provided by three modules which
+  are maintained in seperate source trees. These are 
+  <simplelist>
+    <member>spl (solaris porting layer)</member>
+    <member>zfs (core dmu/dsl functionality)</member>
+    <member>lzfs (linux posix layer)</member>
+  </simplelist>
+  You need to retrive the sources for all three and compile them. If
+  any one of them are missing zfs won't function. The three
+  repositories can be accessed at the following url <ulink
+  url="https://github.com/zfs-linux">https://github.com/zfs-linux</ulink>
+</para>
+
+<para>
+  The commands and procedures required to build freash modules from
+  source are listed below. Please note that some of the tools used in
+  the procedure might not be installed on your machine and the error
+  that result don't always clearly indicate that the package was
+  missing.
+  <screen>
+<prompt>/tmp $</prompt> <command> git clone git://github.com/zfs-linux/spl.git</command>
+Initialized empty Git repository in /tmp/spl/.git/
+remote: Counting objects: 4266, done.
+remote: Compressing objects: 100% (1144/1144), done.
+remote: Total 4266 (delta 3155), reused 4162 (delta 3078)
+Receiving objects: 100% (4266/4266), 1.70 MiB | 123 KiB/s, done.
+Resolving deltas: 100% (3155/3155), done.
+<prompt>/tmp$</prompt> <command>git clone git://github.com/zfs-linux/zfs.git</command>
+Initialized empty Git repository in /tmp/zfs/.git/
+remote: Counting objects: 68496, done.
+remote: Compressing objects:   3% (631/21029)   
+<prompt>/tmp$</prompt> <command>git clone git://github.com/zfs-linux/lzfs.git</command>
+Initialized empty Git repository in /tmp/lzfs/.git/
+remote: Counting objects: 173, done.
+remote: Compressing objects: 100% (152/152), done.
+remote: Total 173 (delta 92), reused 38 (delta 16)
+Receiving objects: 100% (173/173), 199.19 KiB | 103 KiB/s, done.
+Resolving deltas: 100% (92/92), done.
+<prompt>/tmp$ </prompt><command>./configure</command>
+checking metadata... yes
+checking build system type... x86_64-unknown-linux-gnu
+checking host system type... x86_64-unknown-linux-gnu
+checking target system type... x86_64-unknown-linux-gnu
+....
+<prompt>/tmp$ </prompt><command>./configure</command>
+  </screen>
+  
+</para>
+</sect1>
+</chapter>
+
+
+</book>
