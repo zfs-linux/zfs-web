@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>                                 
+
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"                   
+"/usr/share/xml/docbook/schema/dtd/4.4/docbookx.dtd">                         <book>                                                                        <bookinfo>                                                                    <title>ZFS Web side</title>
+</bookinfo>                
+
+<chapter><title>Support And Platform</title>
+<sect1><title>Limited Beta - Details of the beta release</title>
+<para>
+Release Date	           15th September 2010
+zpool version	           18
+solaris build	           b121
+linux distros 
+supported (64-bit only)	   Fedora12 (rpms)
+                           RHEL 6 beta 2 (rpms)
+                           Ubuntu 10.04 (deb)
+</para>
+</sect1>
+
+
+<sect1><title>GA Details - Details of the beta release </title>
+<para>
+Release Date				15th December 2010
+zpool version				26
+solaris build				onnv_141
+linux distros supported (64-bit only)	Fedora11/Fedora12 (rpms)
+					RHEL5/RHEL6 (rpms) SuSE11
+					Ubuntu 10.04 (deb)
+					others (if we see sufficient interest)
+</para>
+</sect1>
+</chapter>
+
+</book>
