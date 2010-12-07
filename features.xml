@@ -9,7 +9,36 @@
 <chapter><title>Features</title>
 <sect1><title>ZFS DataSheet - UI Features</title>
 <para>
-
+<table>
+<title>Commands/Feature support</title>
+<tgroup cols="5">
+<thead>
+<row>
+<entry>Command</entry>
+<entry>ZFS OpenSolaris</entry>
+<entry>ZFS Linux Beta</entry>
+<entry>ZFS Linux GA</entry>
+<entry>Notes</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry>zfs-create</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>zfs destroy</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
 </para>
 </sect1>
 

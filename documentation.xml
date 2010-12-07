@@ -143,7 +143,25 @@ spl                   120247  7 lzfs,zfs,zcommon,zunicode,znvpair,zavl,splat
   
 </para>
 </sect1>
+
+<sect1><title>Installing Startup Scripts</title>
+<para> The binaries have been installed. Currently the make system
+does not intall the startup scritps these have to be done manually.
+</para>
+<para>Follow this procedure for Fedora</para>
+  <screen>
+<prompt>/tmp$</prompt> <command> chkconfig --add zfsload</command>
+  </screen>
+
+<para>Follow this procedure for Ubuntu</para>
+  <screen>
+<prompt>/tmp$</prompt> <command> cp lzfs/scripts/zfsload-ubuntu /etc/init.d/zfsload</command>
+<prompt>/tmp$</prompt> <command> chown root /etc/init.d/zfsload</command>
+<prompt>/tmp$</prompt> <command> chmod +x /etc/init.d/zfsload</command>
+<prompt>/tmp$</prompt> <command> update-rc.d zfsload defaults</command>
+<prompt>/tmp$</prompt> <command> service zfsload start</command>
+  </screen>
+
+</sect1>
 </chapter>
-
-
 </book>
