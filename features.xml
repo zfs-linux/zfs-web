@@ -36,6 +36,422 @@
 <entry>Yes</entry>
 <entry></entry>
 </row>
+<row>
+<entry>zfs snapshot</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>zfs rollback</entry>
+<entry>Yes</entry>
+<entry>Bug</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>zfs clone</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>zfs promote</entry>
+<entry>Yes</entry>
+<entry>Bug</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+
+<row>
+<entry>zfs rename</entry>
+<entry>Yes</entry>
+<entry>* Partial</entry>
+<entry>Yes</entry>
+<entry>* does not work for volumes</entry>
+</row>
+<row>
+<entry>zfs set</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+
+
+<row>
+<entry>zfs get</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>zfs userspace</entry>
+<entry>Yes</entry>
+<entry>No</entry>
+<entry>Yes</entry>
+<entry>feature needs to be implemented
+would be available in GA</entry>
+</row>
+<row>
+<entry>zfs groupspace</entry>
+<entry>Yes</entry>
+<entry>No</entry>
+<entry>Yes</entry>
+<entry>feature needs to be implemented would be available in GA</entry>
+</row>
+
+<row>
+<entry>zfs mount</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>zfs unmount</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+
+<row>
+<entry>zfs share</entry>
+<entry>Yes</entry>
+<entry>No</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+
+<row>
+<entry>zfs unshare</entry>
+<entry>Yes</entry>
+<entry>No</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+
+
+<row>
+<entry>zfs sent</entry>
+<entry>Yes</entry>
+<entry>Bug</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+
+<row>
+<entry>zfs recieve</entry>
+<entry>Yes</entry>
+<entry>Bug</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+
+<row>
+<entry>zfs allow</entry>
+<entry>Yes</entry>
+<entry>Bug</entry>
+<entry>bug</entry>
+<entry>equivalent infrastructure does not exist on linux</entry>
+</row>
+
+<row>
+<entry>zfs unallow</entry>
+<entry>Yes</entry>
+<entry>Bug</entry>
+<entry>Bug</entry>
+<entry>equivalent infrastructure does not exist on linux</entry>
+</row>
+
+<row>
+<entry>zfs hold</entry>
+<entry>Yes</entry>
+<entry>Bug</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+
+
+<row>
+<entry>zfs release</entry>
+<entry>Yes</entry>
+<entry>Bug</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+
+<row>
+<entry>zpool add</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+
+<row>
+<entry>zpool attach</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+
+<row>
+<entry>zpool clear</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+
+<row>
+<entry>zpool create</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+
+
+<row>
+<entry>zpool destroy</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>zpool detach</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>zpool export</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>zpool get</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>zpool history</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>zpool import</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>zpool iostat</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>zpool list</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>zpool offline</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>zpool online</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>zpool remove</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>zpool replace</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>zpool scrub</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>zpool set</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>zpool upgrade</entry>
+<entry>Yes</entry>
+<entry>N/A</entry>
+<entry>N/A</entry>
+<entry></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</para>
+</sect1>
+
+
+<sect1><title>ZFS DataSheet - Overview Features</title>
+<para>
+<table>
+<title>Commands/Feature Support</title>
+<tgroup cols="5">
+<thead>
+<row>
+<entry>Command</entry>
+<entry>ZFS OpenSolaris</entry>
+<entry>ZFS Linux Beta></entry>
+<entry>ZFS Linux GA</entry>
+<entry>Notes</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry>linux async IO</entry>
+<entry>Not Applicable</entry>
+<entry>No</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>Posix async IO</entry>
+<entry>??</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>Storage Pools</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>Copy on – write transactional model</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>Dynamic Striping</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>Variable Block Sizes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>Cache Management</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>Adaptive Endianness</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>Deduplication</entry>
+<entry>Yes</entry>
+<entry>No</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+
+<row>
+<entry>Name normalization support (case insensitive)</entry>
+<entry>Yes</entry>
+<entry>No</entry>
+<entry>No</entry>
+<entry></entry>
+</row>
+
+<row>
+<entry>Quotas</entry>
+<entry>Yes</entry>
+<entry>No</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>Rootable file system</entry>
+<entry>Yes</entry>
+<entry>No</entry>
+<entry>* May Be</entry>
+<entry>* Would be implemented on customer demand</entry>
+</row>
+<row>
+<entry>Access control list (ACLs)</entry>
+<entry>Yes</entry>
+<entry>No</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>Remount</entry>
+<entry>Yes</entry>
+<entry>No</entry>
+<entry>Yes</entry>
+<entry></entry>
+</row>
+<row>
+<entry>KERN smb support</entry>
+<entry>Yes</entry>
+<entry>No</entry>
+<entry>No</entry>
+<entry></entry>
+</row>
 </tbody>
 </tgroup>
 </table>
@@ -43,6 +459,5 @@
 </sect1>
 
 </chapter>
-
 
 </book>
