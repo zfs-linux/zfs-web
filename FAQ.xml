@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"                   
+"/usr/share/xml/docbook/schema/dtd/4.4/docbookx.dtd">                         
+<book>                                                                        
+<bookinfo>                                                                                                   
+<title>ZFS Web Site</title>                                                                                        
+</bookinfo>                                                                   
+<chapter><title>FAQS</title>  
+<para>                                       
+
+<orderedlist numeration="arabic">  
+
+<listitem>
+<para>
+Using entire disk (sdb) instead of partitions sdb1 works only the 1st time.
+</para>
+<para>
+The first time you add an unpartitioned disk to a pool you can add it as sdb but when ever the device is reused after destroying the pool you need to use sdbThe partion type GPT gets initialized. Note fdisk cannot handle this partition type.
+</para>
+</listitem>
+
+<listitem>
+<para>
+zpool create fails with "dir is not empty"
+</para>
+<para>
+The mount point specified is not empty. Make sure that the mount point does not contain any files or directories for the newly created pool to be mounted.
+</para>
+</listitem>
+
+<listitem>
+<para>
+Can you have ZFS as the root filesystem
+</para>
+<para>
+The current beta release this is not possible. We havent planned to do this in the near future. If you think this is important please drop us a mail.
+</para>
+</listitem>
+
+<listitem>
+<para>
+NFS export and zfs share
+</para>
+<para>
+NFS export via zfs share or setting the properties is not supported. Although exporting as you would export any other filesystem by making an entry in /etc/exports or exportfs does work there are couple of unresolved bugs in this area which we are working on.
+</para>
+</listitem>
+
+<listitem>
+<para>
+CIFS support?
+</para>
+<para>
+CIFS export via zfs share or setting the properties is not supported. However sharing with samba is supported.
+</para>
+</listitem>
+
+<listitem>
+<para>
+Dedup
+</para>
+<para>
+The beta does not support dedup but this will be available in the GA version. The beta supports zpool version 18 where as dedup feature was introduced in version 21.
+</para>
+</listitem>
+
+<listitem>
+<para>
+Direct IO Support
+</para>
+<para>
+Direct IO falls back to buffered read/write funtions
+</para>
+</listitem>
+
+<listitem>
+<para>
+Permssion denied error while creating file/dir on any Pool in Fedora.
+</para>
+<para>
+Disable SeLinux.
+</para>
+</listitem>
+
+<listitem>
+<para>
+How to destroy snapshots ?
+</para>
+<para>
+To destroy the snapshots one needs to check whether the snapshots are automatically mounted or not. Snapshots are automatically mounted under the directory pool-or-fs-mntpt.zfs/snapshot/snapshot-name . Before destroying one needs to unmount the snapshot and then destroy them.
+</para>
+</listitem>
+
+<listitem>
+<para>
+Licence issue
+</para>
+<para>
+This port is released under the GPL/CDDL license and can be downloaded from http://github.com/mitra. There is no conflict in CDDL vs GPL licensing as long as the CDDL zfs are maintained as a loadable module and not built into the linux kernel.
+ </para>
+</listitem>
+
+</orderedlist>
+</para>
+</chapter>
+</book>
+
+
+
