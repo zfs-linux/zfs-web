@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-
-
 <!DOCTYPE book PUBLIC "-//OASIS//DTD Docbook XML V4.4//EN"
 "/usr/share/xml/docbook/schema/dtd/4.4/docbookx.dtd">
+
 <book>
 <bookinfo>
 <title>ZFS Web Side</title>                         
@@ -10,22 +9,62 @@
 
 <chapter><title>Known Issues</title>
 <para>
-1.To destroy snapshots one needs to unmount the snapshots if they are mounted and then they can be destroyed using the command zfs destroy snap_name. 
+<orderedlist numeration="arabic">
 
-2.When the snapshot is mounted, even if we destroy the snapshot  and after that we try to destroy the pool the pool does not gets destroyed. The error message which is seen is " the pool is busy ".
+<listitem>
+<para>
+To destroy snapshots one needs to unmount the snapshots if they are mounted and then they can be destroyed using the command zfs destroy snap_name. 
+</para>
+</listitem>
 
-3.Stressing the read/write code paths by having multiple reads and writers to the same file can cause an oops. We are working on this problem and plan to refresh the beta as soon as we have a fix.
+<listitem>
+<para>
+When the snapshot is mounted, even if we destroy the snapshot  and after that we try to destroy the pool the pool does not gets destroyed. The error message which is seen is " the pool is busy ".
+</para>
+</listitem>
 
-4.Access contents of the snapshots through the /pool-or-fs-mntpt/.zfs/snapshot/snapname interface only i.e.  they are automounted into that directory. Although manual mounting of the snapshots is possible but there are some complications if the snapshot is mounted manually and also accessed automatically simultaneously.
+<listitem>
+<para>
+Stressing the read/write code paths by having multiple reads and writers to the same file can cause an oops. We are working on this problem and plan to refresh the beta as soon as we have a fix.
+</para>
+</listitem>
 
-5.Some properties do not work when set during creation of the zfs file-systems. It is recommended that the user first creates the file-system and then set the desired properties using "zfs set" command.
+<listitem>
+<para>
+Access contents of the snapshots through the /pool-or-fs-mntpt/.zfs/snapshot/snapname interface only i.e.  they are automounted into that directory. Althoughmanual mounting of the snapshots is possible but there are some complications if the snapshot is mounted manually and also accessed automatically simultaneously.
+</para>
+</listitem>
 
-6.There are some known bugs when exporting the zpool or zfs file-system using the /etc/exports file and mounting it on client machines using nfs.
+<listitem>
+<para>
+Some properties do not work when set during creation of the zfs file-systems. It is recommended that the user first creates the file-system and then set the desired properties using "zfs set" command.
+</para>
+</listitem>
 
-7.zfs send/receive feature has some known bugs.
+
+<listitem>
+<para>
+There are some known bugs when exporting the zpool or zfs file-system using the /etc/exports file and mounting it on client machines using nfs.
+</para>
+</listitem>
+
+
+<listitem>
+<para>
+zfs send/receive feature has some known bugs.
+</para>
+</listitem>
+
+</orderedlist>
 </para>
 </chapter>
 </book>
+
+ 
+
+
+
+
 
 
     
