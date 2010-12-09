@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"/usr/share/xml/docbook/schema/dtd/4.4/docbookx.dtd">
+<book>
+<bookinfo>
+<title>ZFS Web Site</title>
+</bookinfo>
+
+<chapter><title>Open A Bug</title>
+<para>
+ZFS port on Linux is still in the first limited edition beta phase. We have tested the product at our end, however, its impossible to put it into rigorous testing for all environments and all possible use cases.
+
+We have chosen you as a selected first beta customer as you have the capabilities to put the beta under test in conditions which we havent treaded so far. Probably, you would be encountering some issues. Reporting these bugs and crashes will help us to make sure the user experience is better and the product is more robust and stable in future for running under same environment.
+
+Once the bug is reported, our team of engineers would be working closely with you to ensure the issue is resolved.
+
+Please email zfs@kqinfotech.com to report the bugs or the crashes encountered with all the possible details.
+</para>
+</chapter>
+</book>
