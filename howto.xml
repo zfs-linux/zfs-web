@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD Docbook XML V4.4//EN"
+"/usr/share/xml/docbook/schema/dtd/4.4/docbookx.dtd">
+
+<book>
+<bookinfo>
+<title>ZFS Web Side</title>
+</bookinfo>
+
+<chapter><title>How To</title>
+<para>
+The Solaris Porting Layer (SPL) is a Linux kernel module which provides many of the Solaris kernel APIs. This shim layer makes it possible to run Solaris kernel code in the Linux kernel with relatively minimal modification.
+
+The Linux zfs kernel port is built on the Solaris Porting Layer which provides a Solaris style API in the Linux kernel.	
+<para>
+Once the spl is installed you can build zfs against it using the standard autoconf style build system. The zfs build system is designed to detect and build against your kernel. The build system will make an educated guess as to which kernel you wish to build against. If it guesses wrong simply specify your kernel devel headers using the —with-linux configure option. You may also need the —with-linux-obj configure option if the kernel build objects are installed in a different directory. You need to specify the version of the spl using the —with-spl configure option.
+</para>
+<para>
+Ref:
+http://github.com/behlendorf/zfs/wiki/Building-ZFS
+http://github.com/behlendorf/spl/wiki
+
+LZFS is POSIX layer built on top of spl and zfs. Procedure to build lzfs is similar to zfs.
+Apart from spl version, you need to specify the version of the zfs using the —with-zfs configure option.
+</para>
+e.g.
+<para>
+SPL
+</para>
+<para>
+[kqinfo@zfs spl-0.4.7]$ ./configure
+</para>
+<para>
+[kqinfo@zfs spl-0.4.7]$ make
+</para>
+<para>
+ZFS
+</para>
+<para>
+[kqinfo@zfs spl-0.4.7]$ ./configure --with-spl=PATH_TO_SPL
+</para>
+<para>
+[kqinfo@zfs spl-0.4.7]$ make
+</para>
+<para>
+LZFS
+</para>
+<para>
+[kqinfo@zfs spl-0.4.7]$ ./configure --with-spl=PATH_TO_SPL
+--with-zfs=PATH_TO_SPL
+</para>
+<para>
+[kqinfo@zfs spl-0.4.7]$ make
+</para>
+
+<para>
+Packages
+</para>
+<para>
+To create the packages for your distribution run make deb or make rpm after doing the configure step.
+</para>
+
+<para>
+Packages
+</para>
+<para>
+We have packages for few kernels released by different distributions.
+</para>
+<orderedlist numeration="arabic">
+<listitem>
+
+<para>
+Fedora
+</para>
+
+
+<itemizedlist>
+<listitem>
+<para>
+2.6.31.5-127.fc12.x86_64e
+</para>
+<para>
+SPL
+</para>
+<para>
+ZFS
+</para>
+<para>
+LZFS
+</para>
+</listitem>
+
+<listitem>
+<para>
+2.6.32.16-150.fc12.x86_64
+</para>
+<para>
+SPL
+</para>
+<para>
+ZFS
+</para>
+<para>
+LZFS
+</para>
+</listitem>
+
+<listitem>
+<para>
+2.6.32.19-163.fc12.x86_64
+</para>
+<para>
+SPL
+</para>
+<para>
+ZFS
+</para>
+<para>
+LZFS
+</para>
+</listitem>
+
+<listitem>
+<para>
+2.6.32.21-166.fc12.x86_64
+</para>
+<para>
+SPL
+</para>
+<para>
+ZFS
+</para>
+<para>
+LZFS
+</para>
+</listitem>
+</itemizedlist>
+
+</listitem>
+</orderedlist>
+</para>
+</chapter>
+</book>
