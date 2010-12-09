@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD Docbook XML V4.4//EN"
+"/usr/share/xml/docbook/schema/dtd/4.4/docbookx.dtd">
+
+<book>
+<bookinfo>
+<title>ZFS Web Side</title>
+</bookinfo>
+
+<chapter><title>Consulting Services</title>
+<sect1><title>Why Consulting Services ?</title>
+<para>
+
+<itemizedlist>
+<listitem>
+<para>
+Consulting services are not a luxury which you can afford only in good times. Rather you cannot never afford not to use such a cost-effective tool!
+</para>
+</listitem>
+<listitem>
+<para>
+The use of consulting services is cost-effective: get the best solutions as you need them, rather than maintaining a large all-purpose infrastructure. You can basically buy know-how as you need it.
+</para>
+</listitem>
+<listitem>
+<para>
+Time and quality matters: imagine the possible extra expenses caused by getting a solution too late or with insufficient quality! And don't risk to spoil great opportunities by not having done certain things properly in time. Time to market is a key issue for a successful business.
+</para>
+</listitem>
+<listitem>
+<para>
+Your job is not to do everything yourself, but to reach your goals.
+</para>
+</listitem>
+<listitem>
+<para>
+You are competent in your area, but nobody can cover all fields. Example: You may be the best expert on fabricating your products, but can you also cover allcompeting technologies and all possible application areas?
+</para>
+</listitem>
+
+</itemizedlist>
+You will recognize that competent consulting services can be used as an invaluable tool for extending and expanding your technical capabilities.
+
+
+KQ offers a variety of consulting servicesin the field of systems and storage tailored to your needs. Leverage KQ's expertise in ZFS and Systems programming by opting for consulting services.
+
+
+Be it integration of ZFS with your storage appliance or performance benchmarking of your backup systems, KQ's consultants are proven experts in this zone. We offer our ZFS expert services to the customers across various verticals ranging from Storage companies to Web Hosting companies. Our understanding on the ZFS port can help you migrating from Open Solaris Servers to Linux Servers or help you implement ZFS in your backup and storage appliance.
+
+
+Our experience and best practices dramatically reduce implementation time and increase returns. Our experts provide hands-on training and knowledge transfer. We offer both onsite and offsite implementation and testing services.
+
+
+If you are interested in knowing more about our consulting services and the costs, please feel free to contact us at zfs-query@kqinfotech.com or call us at +91 (20) 27291440.
+
+
+One of our consultants will get in touch with you, within 24 hours of your inquiry, to understand your requirement and provide you an estimate regarding the same.
+
+</para>
+</sect1>
+</chapter>
+</book>
