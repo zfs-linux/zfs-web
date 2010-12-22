@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>ZFS Linux Developers Reference</title><meta name="generator" content="DocBook XSL Stylesheets V1.75.2" /></head><body><div class="book" title="ZFS Linux Developers Reference"><div class="titlepage"><div><div><h1 class="title"><a id="id175210"></a>ZFS Linux Developers Reference</h1></div></div><hr /></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="chapter"><a href="#id420629">1. Getting Started</a></span></dt><dd><dl><dt><span class="sect1"><a href="#id420633">Maintaining this document</a></span></dt><dd><dl><dt><span class="sect2"><a href="#id420645">Tool Chain</a></span></dt><dt><span class="sect2"><a href="#id385749">Docbook xml crash course</a></span></dt></dl></dd><dt><span class="sect1"><a href="#id385763">Getting and Building from source</a></span></dt><dt><span class="sect1"><a href="#id385275">Installing Startup Scripts</a></span></dt></dl></dd><dt><span class="chapter"><a href="#id385374">2. Debugging Infrastructure</a></span></dt><dd><dl><dt><span class="sect1"><a href="#id385378">printk, cmn_err and dmesg</a></span></dt></dl></dd></dl></div><div class="chapter" title="Chapter 1. Getting Started"><div class="titlepage"><div><div><h2 class="title"><a id="id420629"></a>Chapter 1. Getting Started</h2></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="sect1"><a href="#id420633">Maintaining this document</a></span></dt><dd><dl><dt><span class="sect2"><a href="#id420645">Tool Chain</a></span></dt><dt><span class="sect2"><a href="#id385749">Docbook xml crash course</a></span></dt></dl></dd><dt><span class="sect1"><a href="#id385763">Getting and Building from source</a></span></dt><dt><span class="sect1"><a href="#id385275">Installing Startup Scripts</a></span></dt></dl></div><div class="sect1" title="Maintaining this document"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="id420633"></a>Maintaining this document</h2></div></div></div><p> This document is in the git repository at
+git://github.com/zfs-linux/zfs-web.git. It is a docbook xml document
+and is maintained by the developer community. This section will cover
+how you can build this document and expand on this document by adding
+to it. Extending this document does not need you to be a expert on xml
+with a few minutes of reading the crash course and setting up the tool
+chain you should be good to go.
+</p><div class="sect2" title="Tool Chain"><div class="titlepage"><div><div><h3 class="title"><a id="id420645"></a>Tool Chain</h3></div></div></div><p> In the root dir of the repository there is a script call
+create.sh. It takes an .xml file as a parameter and compiles are create two files.
+</p><table border="0" summary="Simple list" class="simplelist"><tr><td>A monolithic html file</td></tr><tr><td>A pdf document </td></tr></table><p>
+The first time you try this it is mostly going to fail since the tools
+required to install these are not present. I did not make a note of
+the packages needed to install. You will have to search and install
+the packages until the script runs successfully. Anybody who tries
+this please update the document so that other can just install the
+required packages.
+</p></div><div class="sect2" title="Docbook xml crash course"><div class="titlepage"><div><div><h3 class="title"><a id="id385749"></a>Docbook xml crash course</h3></div></div></div><p> To get you started there is a short guide in the repository
+located at docs/docbook-crash-course.pdf This is a good reference for
+the various xml tags commonly used. If you are an emacs user using the
+nxml-mode in emacs gives automatic validation of the tags, completion
+on the tags and many other useful features. I would urge other to add
+the other list of tools/editors/ides they have found useful.
+</p></div></div><div class="sect1" title="Getting and Building from source"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="id385763"></a>Getting and Building from source</h2></div></div></div><p>
+  The ZFS on linux functionality is provided by three modules which
+  are maintained in seperate source trees. These are 
+  </p><table border="0" summary="Simple list" class="simplelist"><tr><td>spl (solaris porting layer)</td></tr><tr><td>zfs (core dmu/dsl functionality)</td></tr><tr><td>lzfs (linux posix layer)</td></tr></table><p>
+  You need to retrive the sources for all three and compile them. If
+  any one of them are missing zfs won't function. The three
+  repositories can be accessed at the following url <a class="ulink" href="https://github.com/zfs-linux" target="_top">https://github.com/zfs-linux</a>
+</p><p>
+  The commands and procedures required to build fresh modules from
+  source are listed below. Please note that some of the tools used in
+  the procedure might not be installed on your machine and the error
+  that result don't always clearly indicate that the package was
+  missing.
+  </p><pre class="screen">
+<code class="prompt">/tmp$</code> <span class="command"><strong> git clone git://github.com/zfs-linux/spl.git</strong></span>
+Initialized empty Git repository in /tmp/spl/.git/
+remote: Counting objects: 4266, done.
+remote: Compressing objects: 100% (1144/1144), done.
+remote: Total 4266 (delta 3155), reused 4162 (delta 3078)
+Receiving objects: 100% (4266/4266), 1.70 MiB | 123 KiB/s, done.
+Resolving deltas: 100% (3155/3155), done.
+<code class="prompt">/tmp$</code> <span class="command"><strong>git clone git://github.com/zfs-linux/zfs.git</strong></span>
+Initialized empty Git repository in /tmp/zfs/.git/
+remote: Counting objects: 68496, done.
+remote: Compressing objects:   3% (631/21029)  
+.... 
+<code class="prompt">/tmp$</code> <span class="command"><strong>git clone git://github.com/zfs-linux/lzfs.git</strong></span>
+Initialized empty Git repository in /tmp/lzfs/.git/
+remote: Counting objects: 173, done.
+remote: Compressing objects: 100% (152/152), done.
+remote: Total 173 (delta 92), reused 38 (delta 16)
+Receiving objects: 100% (173/173), 199.19 KiB | 103 KiB/s, done.
+Resolving deltas: 100% (92/92), done.
+<code class="prompt">/tmp$ </code><span class="command"><strong>cd spl</strong></span>
+<code class="prompt">/tmp/spl$ </code><span class="command"><strong>./configure --with-linux=/lib/modules/2.6.32-24-server/build</strong></span>
+checking metadata... yes
+checking build system type... x86_64-unknown-linux-gnu
+checking host system type... x86_64-unknown-linux-gnu
+checking target system type... x86_64-unknown-linux-gnu
+checking whether to enable maintainer-specific portions of Makefiles... no
+checking for a BSD-compatible install... /usr/bin/install -c
+....
+<code class="prompt">/tmp/spl$ </code><span class="command"><strong>make</strong></span>
+make  all-recursive
+make[1]: Entering directory `/tmp/spl'
+Making all in lib
+make[2]: Entering directory `/tmp/spl/lib'
+/bin/bash ../libtool  --tag=CC --silent  --mode=compile gcc -DHAVE_CONFIG_H -include
+../spl_config.h    -Wall -Wshadow -Wstrict-prototypes -fno-strict-aliasing
+-D__USE_LARGEFILE64 -DNDEBUG -g -O
+....
+<code class="prompt">/tmp/spl$ </code><span class="command"><strong>cd ../zfs/</strong></span>
+<code class="prompt">/tmp/zfs$ </code><span class="command"><strong>./configure --with-linux=/lib/modules/2.6.32-24-server/build
+                      --with-spl=/tmp/spl/</strong></span>
+checking metadata... yes
+checking build system type... x86_64-unknown-linux-gnu
+checking host system type... x86_64-unknown-linux-gnu
+checking target system type... x86_64-unknown-linux-gnu
+checking whether to enable maintainer-specific portions of Makefiles... no
+....
+<code class="prompt">/tmp/zfs$ </code><span class="command"><strong>make</strong></span>
+make  all-recursive
+make[1]: Entering directory `/tmp/zfs'
+Making all in etc
+make[2]: Entering directory `/tmp/zfs/etc'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/tmp/zfs/etc'
+....
+<code class="prompt">/tmp/zfs$ </code><span class="command"><strong>cd ../lzfs/</strong></span>
+<code class="prompt">/tmp/lzfs$ </code><span class="command"><strong>./configure --with-linux=/lib/modules/2.6.32-24-server/build
+                       --with-spl=/tmp/spl/ 
+                       --with-zfs=/tmp/zfs/</strong></span>
+checking metadata... yes
+checking build system type... x86_64-unknown-linux-gnu
+checking host system type... x86_64-unknown-linux-gnu
+checking target system type... x86_64-unknown-linux-gnu
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+....
+<code class="prompt">/tmp/lzfs$ </code><span class="command"><strong>make</strong></span>
+make  all-recursive
+make[1]: Entering directory `/tmp/lzfs'
+Making all in module
+make[2]: Entering directory `/tmp/lzfs/module'
+make -C /lib/modules/2.6.32-24-server/build SUBDIRS=`pwd` V=1 modules
+....
+<code class="prompt">/tmp/lzfs$ </code><span class="command"><strong>cd ../zfs/scripts/</strong></span>
+<code class="prompt">/tmp/zfs/scripts$ </code><span class="command"><strong>./zfs.sh -v</strong></span>
+Loading zlib_deflate (/lib/modules/2.6.32-24-server/kernel/lib/
+zlib_deflate/zlib_deflate.ko)
+Loading spl (/tmp/spl//module/spl/spl.ko)
+Loading splat (/tmp/spl//module/splat/splat.ko)
+Loading zavl (/tmp/zfs/module/avl/zavl.ko)
+Loading znvpair (/tmp/zfs/module/nvpair/znvpair.ko)
+....
+<code class="prompt">/tmp/zfs/scripts$ </code><span class="command"><strong>insmod /tmp/lzfs/module/lzfs.ko</strong></span>
+<code class="prompt">/tmp/zfs/scripts$ </code><span class="command"><strong>cd /tmp/spl/</strong></span>
+<code class="prompt">/tmp/spl$ </code><span class="command"><strong>make install</strong></span>
+Making install in lib
+make[1]: Entering directory `/tmp/spl/lib'
+make[2]: Entering directory `/tmp/spl/lib'
+make[2]: Nothing to be done for `install-exec-am'.
+make[2]: Nothing to be done for `install-data-am'.
+....
+<code class="prompt">/tmp/spl$ </code><span class="command"><strong>cd ../zfs/</strong></span>
+<code class="prompt">/tmp/zfs$ </code><span class="command"><strong>make install</strong></span>
+Making install in etc
+make[1]: Entering directory `/tmp/zfs/etc'
+make[2]: Entering directory `/tmp/zfs/etc'
+test -z "/etc" || /bin/mkdir -p "/etc"
+/bin/mkdir -p '/etc/../etc/udev/rules.d'
+....
+<code class="prompt">/tmp/zfs$ </code><span class="command"><strong>cd ../lzfs/</strong></span>
+<code class="prompt">/tmp/lzfs$ </code><span class="command"><strong>make install</strong></span>
+Making install in module
+make[1]: Entering directory `/tmp/lzfs/module'
+make -C /lib/modules/2.6.32-24-server/build SUBDIRS=`pwd` \
+		INSTALL_MOD_PATH= \
+		INSTALL_MOD_DIR=addon/lzfs modules_install
+....
+<code class="prompt">/tmp/lzfs$ </code><span class="command"><strong>lsmod | grep lzfs</strong></span>
+lzfs                   28371  0 
+zfs                   964150  1 lzfs
+spl                   120247  7 lzfs,zfs,zcommon,zunicode,znvpair,zavl,splat
+  </pre><p>
+  
+</p></div><div class="sect1" title="Installing Startup Scripts"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="id385275"></a>Installing Startup Scripts</h2></div></div></div><p> The binaries have been installed. Currently the make system
+does not intall the startup scritps these have to be done manually.
+</p><p>Follow this procedure for Fedora</p><pre class="screen">
+<code class="prompt">/tmp$</code> <span class="command"><strong> chkconfig --add zfsload</strong></span>
+  </pre><p>Follow this procedure for Ubuntu</p><pre class="screen">
+<code class="prompt">/tmp$</code> <span class="command"><strong> cp lzfs/scripts/zfsload-ubuntu /etc/init.d/zfsload</strong></span>
+<code class="prompt">/tmp$</code> <span class="command"><strong> chown root /etc/init.d/zfsload</strong></span>
+<code class="prompt">/tmp$</code> <span class="command"><strong> chmod +x /etc/init.d/zfsload</strong></span>
+<code class="prompt">/tmp$</code> <span class="command"><strong> update-rc.d zfsload defaults</strong></span>
+<code class="prompt">/tmp$</code> <span class="command"><strong> service zfsload start</strong></span>
+  </pre></div></div><div class="chapter" title="Chapter 2. Debugging Infrastructure"><div class="titlepage"><div><div><h2 class="title"><a id="id385374"></a>Chapter 2. Debugging Infrastructure</h2></div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><span class="sect1"><a href="#id385378">printk, cmn_err and dmesg</a></span></dt></dl></div><div class="sect1" title="printk, cmn_err and dmesg"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a id="id385378"></a>printk, cmn_err and dmesg</h2></div></div></div><p> If you have worked on this a short time you would realize that
+although cmn_err prints to the dmesg buffer it is not very
+reliable. You cannot be sure that messages have not been
+skipped. There is a parallel infrastructure in SPL which gives much
+more reliable logging. 
+</p><p> The messages from cmn_err depending on the settings go to the
+dmesg buffer as well as the spl log buffer. This spl log buffer is in
+core. To dump this to a file you need to execute "echo 1
+&gt;/proc/sys/kernel/spl/debug/dump" This will create a binary file in
+/tmp/spl*. Use the spl command to cover this binary file to text.
+</p></div></div></div></body></html>
