@@ -214,5 +214,13 @@ core. To dump this to a file you need to execute "echo 1
 /tmp/spl*. Use the spl command to cover this binary file to text.
 </para>
 </sect1>
+<sect1><title>How to debug using printk and cmn_err</title>
+ <screen>
+<prompt>/tmp$</prompt> <command> dmesg -c </command>
+<prompt>/tmp$</prompt> <command> echo 1>/proc/sys/kernel/spl/debug/dump </command>
+<prompt>/tmp$</prompt> <command> vim /tmp/spl-log.1293106961.31507 </command>
+<prompt>/tmp$</prompt> <command> spl /tmp/spl-log.1293106961.31507 </command>
+ </screen>
+</sect1>
 </chapter>
 </book>
