@@ -23,9 +23,6 @@ operations and features.
     not supported.</para>
     </answer>
   </qandaentry>
-</qandaset>
-
-<qandaset>
   <qandaentry>
     <question><para>zfs rollback panic</para>
     </question>
@@ -35,8 +32,6 @@ operations and features.
     this occur.. </para>
     </answer>
   </qandaentry>
-</qandaset>
-<qandaset>
   <qandaentry>
     <question><para> Migrating data between solaris and linux</para>
     </question>
@@ -55,7 +50,6 @@ operations and features.
     </answer>
   </qandaentry>
 </qandaset>
-
 </sect1>
 
 <sect1><title>NFS shares related</title>
@@ -138,7 +132,7 @@ pre-requisites as required.
 </para>
 </sect1>
 <sect1><title>Redhat 6.0</title>
-<para> Installing <productname>KQ Stor</productname>
+<para> Installing &KQS; on Redhat EL 6.0. 
 
 <screen>
 <prompt></prompt><command></command>
@@ -146,7 +140,7 @@ pre-requisites as required.
 <prompt>[root@kqinfo ~]# </prompt><command>ls 2.6.32-71.el6.x86_64</command>
 lzfs  spl  zfs
 <prompt>[root@kqinfo ~]# </prompt><command>cd 2.6.32-71.el6.x86_64/</command>
-<prompt>[root@kqinfo 2.6.32-71.el6.x86_64]# </prompt><command>rpm -Uvh *</command>
+<prompt>[root@kqinfo 2.6.32-71.el6.x86_64]# </prompt><command>rpm -Uvh */*</command>
 <replaceable>After successful installation you can check using the command below.
 </replaceable>
 <prompt>[root@kqinfo 2.6.32-71.el6.x86_64]# </prompt><command>lsmod |grep zfs </command>
@@ -159,15 +153,36 @@ zlib_deflate           21627  1 zfs
 zunicode              323246  1 zfs
 spl                   305767  6 lzfs,zfs,zcommon,znvpair,zavl,zunicode
 </screen>
-<note><para>rpm might complain about pre-requisites, please install these before proceeding. </para></note>
+<note><para>rpm might complain about pre-requisites, please install these before proceeding.</para></note>
 
 </para>
 </sect1>
 
 <sect1><title>Fedora 14</title>
-<para>
+<para> Installing &KQS; on Fedora 14
+<screen>
+<prompt></prompt><command></command>
+<prompt>[root@kqinfo ~]# </prompt><command>tar zxf zfs-fedora-2.6.35.6-48.fc14.x86_64.tar.gz</command>
+<prompt>[root@kqinfo ~]# </prompt><command>ls zfs-fedora-2.6.35.6-48.fc14.x86_64</command>
+lzfs  spl  zfs
+<prompt>[root@kqinfo ~]# </prompt><command>cd zfs-fedora-2.6.35.6-48.fc14.x86_64/</command>
+<prompt>[root@kqinfo zfs-fedora-2.6.35.6-48.fc14.x86_64]# </prompt><command>rpm -Uvh */*</command>
+<replaceable>After successful installation you can check using the command below.
+</replaceable>
+<prompt>[root@kqinfo zfs-fedora-2.6.35.6-48.fc14.x86_64]# </prompt><command>lsmod |grep zfs </command>
+lzfs                   36395  1 
+zfs                  1417157  2 lzfs
+zcommon                42189  1 zfs
+znvpair                47684  2 zfs,zcommon
+zavl                   12831  1 zfs
+zlib_deflate           21627  1 zfs
+zunicode              323246  1 zfs
+spl                   305767  6 lzfs,zfs,zcommon,znvpair,zavl,zunicode
+</screen>
+<note><para>rpm might complain about pre-requisites, please install these before proceeding. </para></note>
 </para>
 </sect1>
+
 
 <sect1><title>Ubuntu Server 10.10</title>
 <para>
