@@ -131,8 +131,8 @@ the error messages during installation appropriately and install the
 pre-requisites as required.
 </para>
 </sect1>
-<sect1><title>Redhat 6.0</title>
-<para> Installing &KQS; on Redhat EL 6.0. 
+<sect1><title>RHEL 6.0</title>
+<para> Installing &KQS; on RHEL 6.0. 
 
 <screen>
 <prompt></prompt><command></command>
@@ -185,10 +185,29 @@ spl                   305767  6 lzfs,zfs,zcommon,znvpair,zavl,zunicode
 
 
 <sect1><title>Ubuntu Server 10.10</title>
-<para>
+<para> Installing &KQS; on Ubuntu Server 10.10
+<screen>
+<prompt></prompt><command></command>
+<prompt>[kqinfo@ubuntu ~]# </prompt><command>tar zxf Deb_Package_Ubuntu10.10_2.6.35-22-server.tar.gz</command>
+<prompt>[kqinfo@ubuntu ~]# </prompt><command>ls Deb_Package_Ubuntu10.10_2.6.35-22-server</command>
+lzfs_1.0-2.6.35-22-server.deb  spl_0.5.2-2.6.35-22-server.deb  zfs_0.5.1-2.6.35-22-server.deb
+<prompt>[kqinfo@ubuntu ~]# </prompt><command>cd Deb_Package_Ubuntu10.10_2.6.35-22-server/</command>
+<prompt>[kqinfo@ubuntu:~/Deb_Package_Ubuntu10.10_2.6.35-22-server]# </prompt><command> sudo dpkg -i *</command>
+<replaceable>After successful installation you can check using the command below.
+</replaceable>
+<prompt>[kqinfo@ubuntu:~/Deb_Package_Ubuntu10.10_2.6.35-22-server]# </prompt><command>lsmod |grep zfs </command>
+lzfs                   36473  0 
+zfs                   968970  1 lzfs
+zcommon                40380  1 zfs
+znvpair                47541  2 zfs,zcommon
+zavl                    6915  1 zfs
+zlib_deflate           21866  1 zfs
+zunicode              323430  1 zfs
+spl                   118572  6 lzfs,zfs,zcommon,znvpair,zavl,zunicode
+</screen>
+<note><para>dpkg might complain about pre-requisites, please install these before proceeding. </para></note>
 </para>
 </sect1>
-</chapter>
 
 <chapter><title>FAQ</title>
 <para>Place holder
