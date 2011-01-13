@@ -1,154 +1,150 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!-- This document was created with Syntext Serna Free. --><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "/usr/share/xml/docbook/schema/dtd/4.4/docbookx.dtd" [<!ENTITY KQS "<productname>KQ Stor</productname>" >]>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"/usr/share/xml/docbook/schema/dtd/4.4/docbookx.dtd"
+ [<!ENTITY KQS "<productname>KQ Stor</productname>" >]>
+
+
+
 <book>
-  <bookinfo>
-    <title>&KQS; User Guide</title>
-  </bookinfo>
-  <chapter>
-    <title>Release Notes and Work Arrounds</title>
-    <sect1>
-      <title>
-&KQS;      </title>
-      <para>Known defects, limitations and work arounds with the core ZFS
+<bookinfo>
+<title><para> &KQS; User Guide</para>
+<para>Version: 1.0</para>
+<para>Doc Ver: 1.0-01</para></title>
+</bookinfo>
+
+<chapter><title>Release Notes</title>
+<sect1><title>&KQS; </title>
+<para>Known defects, limitations and work arounds with the core ZFS
 operations and features.
 </para>
-      <qandaset>
-        <qandaentry>
-          <question>
-            <para>block and char devices</para>
-          </question>
-          <answer>
-            <para>Accessing block and character devices over zfs filesystem are
+<qandaset>
+  <qandaentry>
+    <question><para>block and char devices</para>
+    </question>
+    <answer><para>Accessing block and character devices over zfs filesystem are
     not supported.</para>
-          </answer>
-        </qandaentry>
-        <qandaentry>
-          <question>
-            <para>zfs rollback panic</para>
-          </question>
-          <answer>
-            <para>Under certain conditions zfs rollback might panic
+    </answer>
+  </qandaentry>
+  <qandaentry>
+    <question><para>zfs rollback panic</para>
+    </question>
+    <answer><para>Under certain conditions zfs rollback might panic
     the system. Please backup your data before attempting this and we
     recommend that you reboot the machine and run zpool scrub should
     this occur.. </para>
-          </answer>
-        </qandaentry>
-        <qandaentry>
-          <question>
-            <para> Migrating data between solaris and linux</para>
-          </question>
-          <answer>
-            <para>Although the pool layout in this port is exactly the
+    </answer>
+  </qandaentry>
+  <qandaentry>
+    <question><para> Migrating data between solaris and linux</para>
+    </question>
+    <answer><para>Although the pool layout in this port is exactly the
     same as that on opensolaris there are subtle differences. Firstly
     ACLs are not supported and fuids are never populated in
     linux. Please contact us before you attempt to import a filesystem
     from solaris to linux. Secondly the extended attributes in linux
     are implemented by prefixing the attribute name with the attribute
-    class. e.g. &quot;user.&quot; for user attributes &quot;security.&quot; for selinux
+    class. e.g. "user." for user attributes "security." for selinux
     security attributes. This imposes the restrition that any
     arbitrary named attribute will not exist on linux, it will have a
-    prefix either &quot;user&quot; or &quot;security&quot;. While the attributes in
+    prefix either "user" or "security". While the attributes in
     opensolaris can have any arbitrary name.
     </para>
-          </answer>
-        </qandaentry>
-      </qandaset>
-    </sect1>
-    <sect1>
-      <title>NFS shares related</title>
-      <para> Know problems and work arounds related export ZFS filesystems
+    </answer>
+  </qandaentry>
+</qandaset>
+</sect1>
+
+<sect1><title>NFS shares related</title>
+<para> Know problems and work arounds related export ZFS filesystems
 over NFS.
 </para>
-      <qandaset>
-        <qandaentry>
-          <question>
-            <para>zfs share does not work</para>
-          </question>
-          <answer>
-            <para>zfs share command does not export the filesystem marked
+<qandaset>
+  <qandaentry>
+    <question>
+      <para>zfs share does not work</para>
+    </question>
+    <answer>
+      <para>zfs share command does not export the filesystem marked
       with sharenfs=on. The exporting is done at the time zfs set
       sharenfs=on tank is executed. Since this internally invokes the
       exportfs command the effects are equivalent if you chose to use
       exportfs instead of zfs sharenfs=on to export. This current
-      limitation of &quot;zfs share&quot; not invoking exportfs will be fixed in
+      limitation of "zfs share" not invoking exportfs will be fixed in
       a minor patch release.</para>
-          </answer>
-        </qandaentry>
-        <qandaentry>
-          <question>
-            <para>How do I set nfs options while exporting</para>
-          </question>
-          <answer>
-            <para>Currently the nfs integration within the zfs command is
+    </answer>
+  </qandaentry>
+  <qandaentry>
+    <question>
+      <para>How do I set nfs options while exporting</para>
+    </question>
+    <answer>
+      <para>Currently the nfs integration within the zfs command is
       limited to invoking exportfs. It does not give control to set
-      the various options like &quot;no_root_squash&quot; or other exportfs
+      the various options like "no_root_squash" or other exportfs
       options. If such fine grained control over the nfs export is
       required we recommend that you use exportfs directly.</para>
-          </answer>
-        </qandaentry>
-        <qandaentry>
-          <question>
-            <para> filesystem exported via /etc/fstab doesn&apos;t show
+    </answer>
+  </qandaentry>
+  <qandaentry>
+    <question> <para> filesystem exported via /etc/fstab doesn't show
     correctly on client</para>
-          </question>
-          <answer>
-            <para>Depending on your setup the nfs exports might happen
+    </question>
+    <answer><para>Depending on your setup the nfs exports might happen
     before the zfs filesystems are mounted. This would result in
     mountpoints for the ZFS filesystems being exported
     instead. Unexport and re-export the /etc/fstab entries</para>
-          </answer>
-        </qandaentry>
-      </qandaset>
-    </sect1>
-    <sect1>
-      <title>other linux features</title>
-      <qandaset>
-        <qandaentry>
-          <question>
-            <para>io_submit(2) libaio.h</para>
-          </question>
-          <answer>
-            <para>Posix AIO is fully supported. In the current release
+    </answer>
+  </qandaentry>
+</qandaset>
+</sect1>
+<sect1><title>other linux features</title>
+<qandaset>
+  <qandaentry>
+    <question> <para>io_submit(2) libaio.h</para>
+    </question>
+    <answer><para>Posix AIO is fully supported. In the current release
     Linux AIO support has been disabled. It should be enabled in one
     of the minor releases </para>
-          </answer>
-        </qandaentry>
-      </qandaset>
-    </sect1>
-  </chapter>
-  <chapter>
-    <title>Instalation Guide</title>
-    <sect1>
-      <title>Download The Binaries</title>
-      <para>To download &KQS; please visit our website <ulink url="http://www.kqstor.com/">http://www.kqstor.com/</ulink> and
+    </answer>
+  </qandaentry>
+</qandaset>
+</sect1>
+</chapter>
+
+<chapter><title>Instalation Guide</title>
+<sect1><title>Download The Binaries</title> 
+
+<para>To download &KQS; please visit our website <ulink
+url="http://www.kqstor.com/">http://www.kqstor.com/</ulink> and
 download the tar.gz file appropriate for your distribution and kernel
-version. The direct link to download is <ulink url="http://www.kqstor.com/download">here</ulink>. The name of the tar.gz file
+version. The direct link to download is <ulink
+url="http://www.kqstor.com/download">here</ulink>. The name of the tar.gz file
 indicates the Distribution, the distro version and the kernel version
 for which these files are built. For example consider file
-&quot;Deb_Package_Ubuntu10.4_2.6.32-25-server.tar.gz&quot; or
-&quot;zfs-fedora-2.6.35.6-48.fc14.x86_64.tar.gz&quot;. The former is for Ubuntu
+"Deb_Package_Ubuntu10.4_2.6.32-25-server.tar.gz" or
+"zfs-fedora-2.6.35.6-48.fc14.x86_64.tar.gz". The former is for Ubuntu
 10.04 running kernel 2.6.32-35 while the later is for Fedore 14
 running linux kernel 2.6.35.6-48.</para>
-      <para> The tar.gz provided contains native packages for your
+<para> The tar.gz provided contains native packages for your
 distribution built against the supported kernel. These packages might
 have dependencies on other packages part of the distribution which
 might not be installed on your machine. You would need to respond to
 the error messages during installation appropriately and install the
 pre-requisites as required.
 </para>
-    </sect1>
-    <sect1>
-      <title>Redhat 6.0</title>
-      <para> Installing &KQS; on Redhat EL 6.0. 
+</sect1>
+<sect1><title>RHEL 6.0</title>
+<para> Installing &KQS; on RHEL 6.0. 
 
 <screen>
-<prompt/><command/>
+<prompt></prompt><command></command>
 <prompt>[root@kqinfo ~]# </prompt><command>tar zxf rh6-2.6.32-71.el6.x86_64.tar.gz</command>
 <prompt>[root@kqinfo ~]# </prompt><command>ls 2.6.32-71.el6.x86_64</command>
 lzfs  spl  zfs
 <prompt>[root@kqinfo ~]# </prompt><command>cd 2.6.32-71.el6.x86_64/</command>
 <prompt>[root@kqinfo 2.6.32-71.el6.x86_64]# </prompt><command>rpm -Uvh */*</command>
-<replaceable>After successful installation you can check using the command below. </replaceable>
+<replaceable>After successful installation you can check using the command below.
+</replaceable>
 <prompt>[root@kqinfo 2.6.32-71.el6.x86_64]# </prompt><command>lsmod |grep zfs </command>
 lzfs                   36395  1 
 zfs                  1417157  2 lzfs
@@ -159,23 +155,22 @@ zlib_deflate           21627  1 zfs
 zunicode              323246  1 zfs
 spl                   305767  6 lzfs,zfs,zcommon,znvpair,zavl,zunicode
 </screen>
-<note>
-          <para>rpm might complain about pre-requisites, please install these before proceeding.</para>
-        </note>
+<note><para>rpm might complain about pre-requisites, please install these before proceeding.</para></note>
 
 </para>
-    </sect1>
-    <sect1>
-      <title>Fedora 14</title>
-      <para> Installing &KQS; on Fedora 14
+</sect1>
+
+<sect1><title>Fedora 14</title>
+<para> Installing &KQS; on Fedora 14
 <screen>
-<prompt/><command/>
+<prompt></prompt><command></command>
 <prompt>[root@kqinfo ~]# </prompt><command>tar zxf zfs-fedora-2.6.35.6-48.fc14.x86_64.tar.gz</command>
 <prompt>[root@kqinfo ~]# </prompt><command>ls zfs-fedora-2.6.35.6-48.fc14.x86_64</command>
 lzfs  spl  zfs
 <prompt>[root@kqinfo ~]# </prompt><command>cd zfs-fedora-2.6.35.6-48.fc14.x86_64/</command>
 <prompt>[root@kqinfo zfs-fedora-2.6.35.6-48.fc14.x86_64]# </prompt><command>rpm -Uvh */*</command>
-<replaceable>After successful installation you can check using the command below. </replaceable>
+<replaceable>After successful installation you can check using the command below.
+</replaceable>
 <prompt>[root@kqinfo zfs-fedora-2.6.35.6-48.fc14.x86_64]# </prompt><command>lsmod |grep zfs </command>
 lzfs                   36395  1 
 zfs                  1417157  2 lzfs
@@ -186,17 +181,37 @@ zlib_deflate           21627  1 zfs
 zunicode              323246  1 zfs
 spl                   305767  6 lzfs,zfs,zcommon,znvpair,zavl,zunicode
 </screen>
-<note>
-          <para>rpm might complain about pre-requisites, please install these before proceeding. </para>
-        </note>
+<note><para>rpm might complain about pre-requisites, please install these before proceeding. </para></note>
 </para>
-    </sect1>
-    <sect1>
-      <title>Ubuntu Server 10.10</title>
-      <para>
+</sect1>
+
+
+<sect1><title>Ubuntu Server 10.10</title>
+<para> Installing &KQS; on Ubuntu Server 10.10
+<screen>
+<prompt></prompt><command></command>
+<prompt>[kqinfo@ubuntu ~]# </prompt><command>tar zxf Deb_Package_Ubuntu10.10_2.6.35-22-server.tar.gz</command>
+<prompt>[kqinfo@ubuntu ~]# </prompt><command>ls Deb_Package_Ubuntu10.10_2.6.35-22-server</command>
+lzfs_1.0-2.6.35-22-server.deb  spl_0.5.2-2.6.35-22-server.deb  zfs_0.5.1-2.6.35-22-server.deb
+<prompt>[kqinfo@ubuntu ~]# </prompt><command>cd Deb_Package_Ubuntu10.10_2.6.35-22-server/</command>
+<prompt>[kqinfo@ubuntu:~/Deb_Package_Ubuntu10.10_2.6.35-22-server]# </prompt><command> sudo dpkg -i *</command>
+<replaceable>After successful installation you can check using the command below.
+</replaceable>
+<prompt>[kqinfo@ubuntu:~/Deb_Package_Ubuntu10.10_2.6.35-22-server]# </prompt><command>lsmod |grep zfs </command>
+lzfs                   36473  0 
+zfs                   968970  1 lzfs
+zcommon                40380  1 zfs
+znvpair                47541  2 zfs,zcommon
+zavl                    6915  1 zfs
+zlib_deflate           21866  1 zfs
+zunicode              323430  1 zfs
+spl                   118572  6 lzfs,zfs,zcommon,znvpair,zavl,zunicode
+</screen>
+<note><para>dpkg might complain about pre-requisites, please install these before proceeding. </para></note>
 </para>
-    </sect1>
-  </chapter>
+</sect1>
+</chapter>
+
   <chapter>
     <title>ZFS Support</title>
     <sect1>
@@ -268,9 +283,37 @@ spl                   305767  6 lzfs,zfs,zcommon,znvpair,zavl,zunicode
       </itemizedlist>
     </sect1>
   </chapter>
-  <chapter>
-    <title>FAQ</title>
-    <para>Place holder
-</para>
-  </chapter>
+
+
+<chapter><title>FAQ</title>
+  <qandaset>
+    <qandaentry>
+      <question> <para>zpool create fails with "dir is not
+      empty"</para>
+    </question>
+    <answer><para>The mount point specified is not empty. Make sure
+    that the mount point does not contain any files or directories for
+    the newly created pool to be mounted. If the mountpoint has any
+    files created the mount will fail. This is possible if
+    inadvertantly files were created before filesystem was mounted, at
+    a later point if you issue "zfs mount -a" the command will
+    fail.</para>
+    </answer>
+  </qandaentry>
+    <qandaentry>
+      <question> <para></para>
+    </question>
+    <answer><para></para>
+    </answer>
+  </qandaentry>
+    <qandaentry>
+      <question> <para></para>
+    </question>
+    <answer><para></para>
+    </answer>
+  </qandaentry>
+</qandaset>
+</chapter>
+
+
 </book>
