@@ -7,9 +7,14 @@
 
 <book>
 <bookinfo>
-<title><para> &KQS; User Guide</para>
-<para>Version: 1.0</para>
-<para>Doc Ver: 1.0-01</para></title>
+<title>&KQS; User Guide</title>
+<author><affiliation> <orgname>Knowledge Quest Infotech</orgname></affiliation> 
+</author>
+<edition> Version: 1.0 Doc Ver: 1.0-01</edition>
+<pubdate>2011</pubdate>
+<copyright><year>2011</year>
+<holder>Knowledge Quest Infotech Pvt. Ltd.
+</holder></copyright>
 </bookinfo>
 
 <chapter><title>Release Notes</title>
@@ -59,6 +64,17 @@ operations and features.
 over NFS.
 </para>
 <qandaset>
+  <qandaentry>
+    <question>
+      <para>cannot access <command>.zfs/snapshots</command> over nfs</para>
+    </question>
+    <answer>
+      <para>This limitation will be addressed in future releases. The
+      snapshots directories can only be accessed from the host machine
+      or if the snapshot mount point has been explicitly
+      exported.</para>
+    </answer>
+  </qandaentry>
   <qandaentry>
     <question>
       <para>zfs share does not work</para>
@@ -288,31 +304,62 @@ spl                   118572  6 lzfs,zfs,zcommon,znvpair,zavl,zunicode
 <chapter><title>FAQ</title>
   <qandaset>
     <qandaentry>
+      <question><para>Where can I get the source code ?</para>
+      </question>
+      <answer><para>The entire source code can be downloaded from
+      <ulink
+      url="https://github.com/zfs-linux">https://github.com/zfs-linux</ulink></para>
+      </answer>
+    </qandaentry>
+    <qandaentry>
+      <question><para>How do I build from the source code?</para>
+      </question>
+      <answer><para>A document describing how you can build is
+      available at <ulink
+      url="https://github.com/zfs-linux/zfs-web/blob/master/dev-ref/documentation.pdf">https://github.com/zfs-linux/zfs-web/blob/master/dev-ref/documentation.pdf</ulink>. We
+      have a script at <ulink
+      url="https://github.com/zfs-linux/misc-scripts/blob/master/install.sh">https://github.com/zfs-linux/misc-scripts/blob/master/install.sh</ulink>
+      which can download and build automatically. These are developer
+      tools, please use these with caution.</para>
+      </answer>
+    </qandaentry>
+    <qandaentry>
       <question> <para>zpool create fails with "dir is not
       empty"</para>
-    </question>
-    <answer><para>The mount point specified is not empty. Make sure
-    that the mount point does not contain any files or directories for
-    the newly created pool to be mounted. If the mountpoint has any
-    files created the mount will fail. This is possible if
-    inadvertantly files were created before filesystem was mounted, at
-    a later point if you issue "zfs mount -a" the command will
-    fail.</para>
-    </answer>
-  </qandaentry>
+      </question>
+      <answer><para>The mount point specified is not empty. Make sure
+      that the mount point does not contain any files or directories for
+      the newly created pool to be mounted. If the mountpoint has any
+      files created the mount will fail. This is possible if
+      inadvertantly files were created before filesystem was mounted, at
+      a later point if you issue "zfs mount -a" the command will
+      fail.</para>
+      </answer>
+    </qandaentry>
     <qandaentry>
-      <question> <para></para>
-    </question>
-    <answer><para></para>
-    </answer>
-  </qandaentry>
+      <question> <para>Can you have &KQS; as the root filesystem</para>
+      </question>
+      <answer><para>For the current release this is not possible.  We
+      haven't planned to do this in the near future. If you think this is
+      important please drop us a mail.</para>
+      </answer>
+    </qandaentry>
     <qandaentry>
-      <question> <para></para>
-    </question>
-    <answer><para></para>
-    </answer>
-  </qandaentry>
-</qandaset>
+      <question> <para>CIFS support</para>
+      </question>
+      <answer><para>CIFS export via <command>zfs share</command> or
+      <command>zfs set sharecifs=on</command> is not supported. However
+      sharing with samba will work fine.</para>
+      </answer>
+    </qandaentry>
+    <qandaentry>
+      <question> <para>Direct IO Support</para>
+      </question>
+      <answer><para>Direct IO does not perform direct IO instead falls
+      back on buffered read/write funtions.</para>
+      </answer>
+    </qandaentry>
+  </qandaset>
 </chapter>
 
 
