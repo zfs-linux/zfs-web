@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
+"/usr/share/xml/docbook/schema/dtd/4.4/docbookx.dtd">
+<book>
+<bookinfo>
+<title>KQ Stor Performance White Paper</title>
+</bookinfo>
+
+<chapter><title>KQ Stor Performance Comparison</title>
+
+<para> This article compares the performance of KQ Stor (ZFS on linux)
+ext4 using various popular benchmarks in the industry. Although the
+current set of set of results is not as exhaustive as the <ulink
+url="http://www.phoronix.com/?page=article&amp;item=linux_kqzfs_benchmarks">
+phoronix article</ulink> but demonstrates significant improvement
+compared to the beta release. </para>
+
+<sect1><title>Hardware and Software Setup</title>
+<!-- Note for Giovanni We will drop in the your hardware specs once we
+     have the run. Currently we are putting the numbers what we have
+     seen on our machine. The attributions will be there from the
+     start.
+-->
+<para> The performance benchmarks were done in collaboration with
+<ulink url="http://www.mindthegap.it/">MindTheGap&reg;</ulink>. The
+hardware used for this setup was</para>
+
+<segmentedlist>
+<segtitle>Processor</segtitle>
+<segtitle>Motherboard</segtitle>
+<segtitle>Chipset</segtitle>
+<segtitle>Memory</segtitle>
+<segtitle>Disk</segtitle>
+<segtitle>OS</segtitle>
+<segtitle>Kernel</segtitle>
+<segtitle>Compiler</segtitle>
+<seglistitem>
+<seg>AMD Phenom II X4 955 @ 3.20GHz (4 Cores)</seg>
+<seg>ASUSTeK M4A785TD-V EVO</seg>
+<seg>AMD RS780 + SB700/SB800</seg>
+<seg>7749MB</seg>
+<seg>3 x 320GB SAMSUNG HD322HJ + 500GB Seagate ST3500418AS + 320GB Western Digital WDC WD3200AAJS-0</seg>
+<seg>Fedora release 14 (Laughlin)</seg>
+<seg>2.6.35.6-48.fc14.x86_64 (x86_64)</seg>
+<seg>GCC 4.5.1</seg>
+</seglistitem>
+</segmentedlist>
+
+
+<!--
+-          Supermicro X8DTN+ Board, 2 x Xeon Quad Core x5550 2.67 Ghz, 32 GB RAM DDR3 1333 Mhz, 16 Seagate Cheetah SAS2 600 GB (14 used for ZFS), 2 LSI SAS2 HBA Controllers LSI 9211-8i
+ Attributionto Giovanni and MindTheGap some where here. -->
+</sect1>
+
+
+<sect1><title>Benchmarks Used</title>
+<para> We have used the benchmarking system developed by Phoronix to
+generate the results. The tools we have used can be downloaded forn
+<ulink
+url="http://www.phoronix-test-suite.com/">http://www.phoronix-test-suite.com/</ulink>. An
+earlier article on the beta version of this software is available at
+<ulink
+url="http://www.phoronix.com/?page=article&amp;item=linux_kqzfs_benchmarks">
+phoronix article</ulink>
+</para>
+</sect1>
+
+<sect1><title>SQLite</title>
+<para> The performance of ZFS on SQLite is significantly better than
+that of ext4. This is mostly because of ZFS's inherent ability to
+covert otherwise random write to sequential write.
+</para>
+
+<screenshot>
+<screeninfo>SQLite on ZFS</screeninfo>
+<mediaobject>
+<imageobject> <imagedata fileref="graphs/sqlite-zfs.png" format="PNG" scale="60" /> </imageobject>
+<textobject> <phrase>SQLite on ZFS</phrase> </textobject>
+<caption>
+<para>SQLite on ZFS</para>
+</caption>
+</mediaobject>
+</screenshot>
+<screenshot>
+<screeninfo>SQLite on ext4</screeninfo>
+<mediaobject>
+<imageobject> <imagedata fileref="graphs/sqlite-ext4.png" format="PNG" scale="60" /> </imageobject>
+<textobject> <phrase>SQLite on ext4</phrase> </textobject>
+<caption>
+<para>SQLite on ext4</para>
+</caption>
+</mediaobject>
+</screenshot>
+</sect1>
+
+
+<sect1><title>Compile Bench</title>
+<para> ZFS is 4 times slower than ext4 on this benchmark. 
+</para>
+<screenshot>
+<screeninfo>Compile Bench on ZFS</screeninfo>
+<mediaobject>
+<imageobject> <imagedata fileref="graphs/compile-bench-zfs.png" format="PNG" scale="60" /> </imageobject>
+<textobject> <phrase>Compile Bench on ZFS</phrase> </textobject>
+<caption>
+<para>Compile Bench on ZFS</para>
+</caption>
+</mediaobject>
+</screenshot>
+
+<screenshot>
+<screeninfo>Compile Bench on ext4</screeninfo>
+<mediaobject>
+<imageobject> <imagedata fileref="graphs/compile-bench-ext4.png" format="PNG" scale="60" /> </imageobject>
+<textobject> <phrase>Compile Bench on ext4</phrase> </textobject>
+<caption>
+<para>Compile Bench on ext4</para>
+</caption>
+</mediaobject>
+</screenshot>
+</sect1>
+
+<sect1><title>IO Zone</title>
+<para> IO Zone is filesystem benchmark that generates and measures a
+variety of filesystem operations. The Set of performance numbers we
+have captured in this section give us an interesting insight into how
+effective utilization of caches can give an order of magnitude
+difference in performance.</para>
+<para>In the case of ext4 the performance is almost identical for both
+the 4GB and 8GB case. However in the case of ZFS the read performance
+is almost 9 time more in the 4GB case in 8GB. This is an artifact of
+efficient caching.
+</para>
+
+<para> The bench mark was run once with a 4GB file size and the second
+time with an 8GB filesize. Remember that the machine on which this was
+run had a total of 8GB ram. One would expect that in when the filesize
+was 8GB the effects of caching would be minimal since the file size is
+almost as large as the main memory and the filesystem could not
+possible get much advantage from the caching, but in the 4GB case the
+cache could yield benefits if leveraged effectively.
+
+<table>
+<title>IO Zone for 4GB filesize</title>
+<tgroup cols="3">
+  <thead>
+    <row>
+      <entry>Filesystem</entry>
+      <entry>Read</entry>
+      <entry>Write</entry>
+    </row>
+  </thead>
+  <tbody>
+    <row>
+      <entry>ext4</entry>
+      <entry>118.90</entry>
+      <entry>138.08</entry>
+    </row>
+    <row>
+      <entry>ZFS</entry>
+      <entry>2696.42</entry>
+      <entry>327.00</entry>
+    </row>
+  </tbody>
+</tgroup>
+</table>
+
+<table>
+<title>IO Zone for 8GB filesize</title>
+<tgroup cols="3">
+  <thead>
+    <row>
+      <entry>Filesystem</entry>
+      <entry>Read</entry>
+      <entry>Write</entry>
+    </row>
+  </thead>
+  <tbody>
+    <row>
+      <entry>ext4</entry>
+      <entry>119.90</entry>
+      <entry>126.14</entry>
+    </row>
+    <row>
+      <entry>ZFS</entry>
+      <entry>252.64</entry>
+      <entry>285.15</entry>
+    </row>
+  </tbody>
+</tgroup>
+</table>
+</para>
+
+
+<screenshot>
+<screeninfo>IO Zone 4GB files on ZFS</screeninfo>
+<mediaobject>
+<imageobject> <imagedata fileref="graphs/iozone-zfs-write-64k-4g.png" format="PNG" scale="60" /> </imageobject>
+<textobject> <phrase>IO Zone 4GB files on ZFS</phrase> </textobject>
+<caption>
+<para>IO Zone 4GB files on ZFS</para>
+</caption>
+</mediaobject>
+</screenshot>
+<screenshot>
+<screeninfo>IO Zone 4GB files on ZFS</screeninfo>
+<mediaobject>
+<imageobject> <imagedata fileref="graphs/iozone-zfs-read-64k-4g.png" format="PNG" scale="60" /> </imageobject>
+<textobject> <phrase>IO Zone 4GB files on ZFS</phrase> </textobject>
+<caption>
+<para>IO Zone 4GB files on ZFS</para>
+</caption>
+</mediaobject>
+</screenshot>
+
+<screenshot>
+<screeninfo>IO Zone 4GB files on ext4</screeninfo>
+<mediaobject>
+<imageobject> <imagedata fileref="graphs/iozone-zfs-read-64k-ext4-4g.png" format="PNG" scale="60" /> </imageobject>
+<textobject> <phrase>IO Zone 4GB files on ext4</phrase> </textobject>
+<caption>
+<para>IO Zone 4GB files on ext4</para>
+</caption>
+</mediaobject>
+</screenshot>
+
+<screenshot>
+<screeninfo>IO Zone 4GB files on ext4</screeninfo>
+<mediaobject>
+<imageobject> <imagedata fileref="graphs/iozone-zfs-write-64k-ext4-4g.png" format="PNG" scale="60" /> </imageobject>
+<textobject> <phrase>IO Zone 4GB files on ext4</phrase> </textobject>
+<caption>
+<para>IO Zone 4GB files on ext4</para>
+</caption>
+</mediaobject>
+</screenshot>
+
+
+</sect1>
+
+
+<sect1><title>Summary</title>
+<para>
+</para>
+</sect1>
+
+</chapter>
+</book>
