@@ -133,10 +133,9 @@ over NFS.
 <para>To download &KQS;, please visit our website <ulink
 url="http://www.kqstor.com/">http://www.kqstor.com/</ulink> and
 download the tar.gz file appropriate for your distribution and kernel
-version. The direct link to download is <ulink
-url="http://www.kqstor.com/download">here</ulink>. The name of the tar.gz file
-indicates the distribution, the distro version and the kernel version
-for which these files are built. For example consider file
+version. The name of the tar.gz file indicates the distribution, the
+distro version and the kernel version for which these files are
+built. For example consider file
 "Deb_Package_Ubuntu10.10_2.6.35-22-server.tar.gz" or
 "zfs-fedora-2.6.35.6-48.fc14.x86_64.tar.gz". The former is for Ubuntu
 10.10 running kernel 2.6.35-22 while the later is for Fedora 14
@@ -232,7 +231,7 @@ spl                   118572  6 lzfs,zfs,zcommon,znvpair,zavl,zunicode
     <title>ZFS Support</title>
     <sect1>
       <title>User Registration.</title>
-      <para> Visit http://kqstor.com/ for user registration. Fill necessary
+      <para> Visit <ulink url="http://www.kqstor.com/">http://www.kqstor.com/</ulink> for user registration. Fill necessary
       information during registration. After submitting you will get an
       activation mail. Make sure you use the correct email-id during
       registration else, you won&apos;t be able to activate your account.</para>
@@ -244,7 +243,7 @@ spl                   118572  6 lzfs,zfs,zcommon,znvpair,zavl,zunicode
       <title>Getting support.</title>
       <para>To get the support on any ZFS issue, you should have a valid
       licencse. Depending on your need you can buy Silver, Gold or Platinum
-      License. For more information please visit : http://kqinfo.com </para>
+      License. For more information please visit : <ulink url="http://www.kqstor.com">http://www.kqstor.com</ulink> </para>
       <para>Once you purchase support license you will get mail regarding license credentials. Keep you license credentials secure to avoid misuse of your license. </para>
       <para>After purchasing license you should register your machine with KQ
       Stor support system. To do that please follow the steps mentioned below: </para>
@@ -325,7 +324,7 @@ spl                   118572  6 lzfs,zfs,zcommon,znvpair,zavl,zunicode
 
 
 <chapter><title>FAQ</title>
-  <qandaset>
+  <qandaset defaultlabel="qanda">
     <qandaentry>
       <question><para>Where can I get the source code ?</para>
       </question>
