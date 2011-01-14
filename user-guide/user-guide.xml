@@ -2,7 +2,7 @@
 <!-- This document was created with Syntext Serna Free. --><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "/usr/share/xml/docbook/schema/dtd/4.4/docbookx.dtd" [<!ENTITY KQS "<productname>KQ Stor</productname>" >]>
 <book>
   <bookinfo>
-    <title>&KQS; User Guide</title>
+    <title><graphic fileref="logo.png" align="center"/>&KQS;User Guide</title>
     <author>
       <affiliation>
         <orgname>Knowledge Quest Infotech</orgname>
@@ -20,7 +20,7 @@
     <sect1>
       <title>
 &KQS;      </title>
-      <para>Known defects, limitations and work arounds with the core ZFS
+      <para> Known defects, limitations and work arounds with the core ZFS
 operations and features.
 </para>
       <qandaset>
@@ -276,7 +276,7 @@ spl                   118572  6 lzfs,zfs,zcommon,znvpair,zavl,zunicode
         </listitem>
         <listitem>
           <para>Login to superuser on  your system and execute following at command line.</para>
-          <para><command> zfs_manage.py -u *edi -p *pswd -k *pkey --register</command></para>
+          <para><command> zfs_manage.py -u *edi -p *pswd -k *pkey -o register</command></para>
         </listitem>
         <listitem>
           <para>If the credentials you have provided are correct then you will
@@ -303,7 +303,7 @@ spl                   118572  6 lzfs,zfs,zcommon,znvpair,zavl,zunicode
       <itemizedlist>
         <listitem>
           <para>To get the support you have  to execute the same
-          command that you have  used for registration.You just need to change <emphasis role="bold">--register</emphasis> option to <emphasis role="bold">--support.</emphasis></para>
+          command that you have  used for registration.You just need to change <emphasis role="bold">register</emphasis> option to <emphasis role="bold">support.</emphasis></para>
         </listitem>
         <listitem>
           <para>Follow the instructions given after the execution of the
@@ -325,7 +325,7 @@ spl                   118572  6 lzfs,zfs,zcommon,znvpair,zavl,zunicode
         </emphasis></para>
       <itemizedlist>
         <listitem>
-          <para>For un-registration  you have to execute the same command line as for registration by changing <emphasis role="bold">--register</emphasis> option to <emphasis role="bold">--unregister</emphasis></para>
+          <para>For un-registration  you have to execute the same command line as for registration by changing <emphasis role="bold">register</emphasis> option to <emphasis role="bold">unregister</emphasis></para>
         </listitem>
         <listitem>
           <para>Follow the instructions given after the execution of the
