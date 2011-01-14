@@ -1,165 +1,175 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
-"/usr/share/xml/docbook/schema/dtd/4.4/docbookx.dtd"
- [<!ENTITY KQS "<productname>KQ Stor</productname>" >]>
-
-
-
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- This document was created with Syntext Serna Free. --><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "/usr/share/xml/docbook/schema/dtd/4.4/docbookx.dtd" [<!ENTITY KQS "<productname>KQ Stor</productname>" >]>
 <book>
-<bookinfo>
-<title>&KQS; User Guide</title>
-<author><affiliation> <orgname>Knowledge Quest Infotech</orgname></affiliation> 
-</author>
-<edition> Version: 1.0 Doc Ver: 1.0-01</edition>
-<pubdate>2011</pubdate>
-<copyright><year>2011</year>
-<holder>Knowledge Quest Infotech Pvt. Ltd.
-</holder></copyright>
-</bookinfo>
-
-<chapter><title>Release Notes</title>
-<sect1><title>&KQS; </title>
-<para>Known defects, limitations and work arounds with the core ZFS
+  <bookinfo>
+    <title>&KQS; User Guide</title>
+    <author>
+      <affiliation>
+        <orgname>Knowledge Quest Infotech</orgname>
+      </affiliation>
+    </author>
+    <edition> Version: 1.0 Doc Ver: 1.0-01</edition>
+    <pubdate>2011</pubdate>
+    <copyright>
+      <year>2011</year>
+      <holder>Knowledge Quest Infotech Pvt. Ltd. </holder>
+    </copyright>
+  </bookinfo>
+  <chapter>
+    <title>Release Notes</title>
+    <sect1>
+      <title>
+&KQS;      </title>
+      <para>Known defects, limitations and work arounds with the core ZFS
 operations and features.
 </para>
-<qandaset>
-  <qandaentry>
-    <question><para>block and char devices</para>
-    </question>
-    <answer><para>Accessing block and character devices over zfs filesystem are
+      <qandaset>
+        <qandaentry>
+          <question>
+            <para>block and char devices</para>
+          </question>
+          <answer>
+            <para>Accessing block and character devices over zfs filesystem are
     not supported.</para>
-    </answer>
-  </qandaentry>
-  <qandaentry>
-    <question><para><command>zfs rollback</command> panic</para>
-    </question>
-    <answer><para>Under certain conditions zfs rollback might panic
+          </answer>
+        </qandaentry>
+        <qandaentry>
+          <question>
+            <para><command>zfs rollback</command> panic</para>
+          </question>
+          <answer>
+            <para>Under certain conditions zfs rollback might panic
     the system. Please backup your data before attempting this and we
     recommend that you reboot the machine and run zpool scrub after the
     rollback. </para>
-    </answer>
-  </qandaentry>
-  <qandaentry>
-    <question><para> Migrating data between Solaris and Linux</para>
-    </question>
-    <answer><para>Although the pool layout in this port is exactly the
+          </answer>
+        </qandaentry>
+        <qandaentry>
+          <question>
+            <para> Migrating data between Solaris and Linux</para>
+          </question>
+          <answer>
+            <para>Although the pool layout in this port is exactly the
     same as that on Opensolaris, there are subtle differences. Firstly
     ACLs are not supported and fuids are never populated in
     Linux. Please contact us before you attempt to import a filesystem
     from Solaris to Linux. Secondly the extended attributes in Linux
     are implemented by prefixing the attribute name with the attribute
-    class. e.g. "user." for user attributes "security." for SELinux
+    class. e.g. &quot;user.&quot; for user attributes &quot;security.&quot; for SELinux
     security attributes. This imposes the restrition that any
     arbitrary named attribute will not exist on Linux, it will have a
-    prefix either "user" or "security". While the attributes in
+    prefix either &quot;user&quot; or &quot;security&quot;. While the attributes in
     Opensolaris can have any arbitrary name.
     </para>
-    </answer>
-  </qandaentry>
-</qandaset>
-</sect1>
-
-<sect1><title>NFS shares related</title>
-<para> Know problems and work arounds related export ZFS filesystems
+          </answer>
+        </qandaentry>
+      </qandaset>
+    </sect1>
+    <sect1>
+      <title>NFS shares related</title>
+      <para> Know problems and work arounds related export ZFS filesystems
 over NFS.
 </para>
-<qandaset>
-  <qandaentry>
-    <question>
-      <para>cannot access <command>.zfs/snapshots</command> over nfs</para>
-    </question>
-    <answer>
-      <para>This limitation will be addressed in future releases. The
+      <qandaset>
+        <qandaentry>
+          <question>
+            <para>cannot access <command>.zfs/snapshots</command> over nfs</para>
+          </question>
+          <answer>
+            <para>This limitation will be addressed in future releases. The
       snapshots directories can only be accessed from the host machine
       or if the snapshot mount point has been explicitly
       exported.</para>
-    </answer>
-  </qandaentry>
-  <qandaentry>
-    <question>
-      <para><command>zfs share</command> does not work</para>
-    </question>
-    <answer>
-      <para><command>zfs share</command> command does not export the filesystem marked
-      with sharenfs=on. The exporting is done at the time <command>zfs set
-      sharenfs=on <emphasis role="italic">dataset</emphasis> </command> is executed. Since this internally invokes the
+          </answer>
+        </qandaentry>
+        <qandaentry>
+          <question>
+            <para><command>zfs share</command> does not work</para>
+          </question>
+          <answer>
+            <para><command>zfs share</command> command does not export the filesystem marked
+      with sharenfs=on. The exporting is done at the time <command>zfs set sharenfs=on <emphasis role="italic">dataset</emphasis></command> is executed. Since this internally invokes the
       <command>exportfs</command> command the effects are equivalent, if you chose to use
       <command>exportfs</command> instead of <command>zfs sharenfs=on</command> to export.
-      This current limitation of "zfs share" not invoking exportfs will be fixed in
+      This current limitation of &quot;zfs share&quot; not invoking exportfs will be fixed in
       a minor patch release.</para>
-    </answer>
-  </qandaentry>
-  <qandaentry>
-    <question>
-      <para>How do I set nfs options while exporting</para>
-    </question>
-    <answer>
-      <para>Currently the nfs integration within the zfs command is
+          </answer>
+        </qandaentry>
+        <qandaentry>
+          <question>
+            <para>How do I set nfs options while exporting</para>
+          </question>
+          <answer>
+            <para>Currently the nfs integration within the zfs command is
       limited to invoking exportfs. It does not give control to set
-      the various options like "no_root_squash" or other exportfs
+      the various options like &quot;no_root_squash&quot; or other exportfs
       options. If such fine grained control over the nfs export is
       required we recommend that you use exportfs directly.</para>
-    </answer>
-  </qandaentry>
-  <qandaentry>
-    <question> <para> Filesystem exported via /etc/fstab doesn't show
+          </answer>
+        </qandaentry>
+        <qandaentry>
+          <question>
+            <para> Filesystem exported via /etc/fstab doesn&apos;t show
     correctly on client</para>
-    </question>
-    <answer><para>Depending on your setup the nfs exports might happen
+          </question>
+          <answer>
+            <para>Depending on your setup the nfs exports might happen
     before the zfs filesystems are mounted. This would result in
     mountpoints for the ZFS filesystems being exported
     instead. Unexport and re-export the /etc/fstab entries.</para>
-    </answer>
-  </qandaentry>
-</qandaset>
-</sect1>
-<sect1><title>Other Linux features</title>
-<qandaset>
-  <qandaentry>
-    <question> <para>io_submit(2) libaio.h</para>
-    </question>
-    <answer><para>Posix AIO is fully supported. In the current release
+          </answer>
+        </qandaentry>
+      </qandaset>
+    </sect1>
+    <sect1>
+      <title>Other Linux features</title>
+      <qandaset>
+        <qandaentry>
+          <question>
+            <para>io_submit(2) libaio.h</para>
+          </question>
+          <answer>
+            <para>Posix AIO is fully supported. In the current release
     Linux AIO support has been disabled. It should be enabled in one
     of the minor releases </para>
-    </answer>
-  </qandaentry>
-</qandaset>
-</sect1>
-</chapter>
-
-<chapter><title>Installation Guide</title>
-<sect1><title>Download The Binaries</title> 
-
-<para>To download &KQS;, please visit our website <ulink
-url="http://www.kqstor.com/">http://www.kqstor.com/</ulink> and
+          </answer>
+        </qandaentry>
+      </qandaset>
+    </sect1>
+  </chapter>
+  <chapter>
+    <title>Installation Guide</title>
+    <sect1>
+      <title>Download The Binaries</title>
+      <para>To download &KQS;, please visit our website <ulink url="http://www.kqstor.com/">http://www.kqstor.com/</ulink> and
 download the tar.gz file appropriate for your distribution and kernel
 version. The name of the tar.gz file indicates the distribution, the
 distro version and the kernel version for which these files are
 built. For example consider file
-"Deb_Package_Ubuntu10.10_2.6.35-22-server.tar.gz" or
-"zfs-fedora-2.6.35.6-48.fc14.x86_64.tar.gz". The former is for Ubuntu
+&quot;Deb_Package_Ubuntu10.10_2.6.35-22-server.tar.gz&quot; or
+&quot;zfs-fedora-2.6.35.6-48.fc14.x86_64.tar.gz&quot;. The former is for Ubuntu
 10.10 running kernel 2.6.35-22 while the later is for Fedora 14
 running Linux kernel 2.6.35.6-48.</para>
-<para> The tar.gz provided contains native packages for your
+      <para> The tar.gz provided contains native packages for your
 distribution built against the supported kernel. These packages might
 have dependencies on other packages part of the distribution which
 might not be installed on your machine. You would need to respond to
 the error messages during installation appropriately and install the
 pre-requisites as required.
 </para>
-</sect1>
-<sect1><title>RHEL 6.0</title>
-<para> Installing &KQS; on RHEL 6.0. 
+    </sect1>
+    <sect1>
+      <title>RHEL 6.0</title>
+      <para> Installing &KQS; on RHEL 6.0. 
 
 <screen>
-<prompt></prompt><command></command>
+<prompt/><command/>
 <prompt>[root@kqinfo ~]# </prompt><command>tar zxf rh6-2.6.32-71.el6.x86_64.tar.gz</command>
 <prompt>[root@kqinfo ~]# </prompt><command>ls 2.6.32-71.el6.x86_64</command>
 lzfs  spl  zfs
 <prompt>[root@kqinfo ~]# </prompt><command>cd 2.6.32-71.el6.x86_64/</command>
 <prompt>[root@kqinfo 2.6.32-71.el6.x86_64]# </prompt><command>rpm -Uvh */*</command>
-<replaceable>After successful installation you can check using the command below.
-</replaceable>
+<replaceable>After successful installation you can check using the command below. </replaceable>
 <prompt>[root@kqinfo 2.6.32-71.el6.x86_64]# </prompt><command>lsmod |grep zfs </command>
 lzfs                   36395  1 
 zfs                  1417157  2 lzfs
@@ -170,22 +180,23 @@ zlib_deflate           21627  1 zfs
 zunicode              323246  1 zfs
 spl                   305767  6 lzfs,zfs,zcommon,znvpair,zavl,zunicode
 </screen>
-<note><para>rpm might complain about pre-requisites, please install these before proceeding.</para></note>
+<note>
+          <para>rpm might complain about pre-requisites, please install these before proceeding.</para>
+        </note>
 
 </para>
-</sect1>
-
-<sect1><title>Fedora 14</title>
-<para> Installing &KQS; on Fedora 14
+    </sect1>
+    <sect1>
+      <title>Fedora 14</title>
+      <para> Installing &KQS; on Fedora 14
 <screen>
-<prompt></prompt><command></command>
+<prompt/><command/>
 <prompt>[root@kqinfo ~]# </prompt><command>tar zxf zfs-fedora-2.6.35.6-48.fc14.x86_64.tar.gz</command>
 <prompt>[root@kqinfo ~]# </prompt><command>ls zfs-fedora-2.6.35.6-48.fc14.x86_64</command>
 lzfs  spl  zfs
 <prompt>[root@kqinfo ~]# </prompt><command>cd zfs-fedora-2.6.35.6-48.fc14.x86_64/</command>
 <prompt>[root@kqinfo zfs-fedora-2.6.35.6-48.fc14.x86_64]# </prompt><command>rpm -Uvh */*</command>
-<replaceable>After successful installation you can check using the command below.
-</replaceable>
+<replaceable>After successful installation you can check using the command below. </replaceable>
 <prompt>[root@kqinfo zfs-fedora-2.6.35.6-48.fc14.x86_64]# </prompt><command>lsmod |grep zfs </command>
 lzfs                   36395  1 
 zfs                  1417157  2 lzfs
@@ -196,22 +207,22 @@ zlib_deflate           21627  1 zfs
 zunicode              323246  1 zfs
 spl                   305767  6 lzfs,zfs,zcommon,znvpair,zavl,zunicode
 </screen>
-<note><para>rpm might complain about pre-requisites, please install these before proceeding. </para></note>
+<note>
+          <para>rpm might complain about pre-requisites, please install these before proceeding. </para>
+        </note>
 </para>
-</sect1>
-
-
-<sect1><title>Ubuntu Server 10.10</title>
-<para> Installing &KQS; on Ubuntu Server 10.10
+    </sect1>
+    <sect1>
+      <title>Ubuntu Server 10.10</title>
+      <para> Installing &KQS; on Ubuntu Server 10.10
 <screen>
-<prompt></prompt><command></command>
+<prompt/><command/>
 <prompt>[kqinfo@ubuntu ~]# </prompt><command>tar zxf Deb_Package_Ubuntu10.10_2.6.35-22-server.tar.gz</command>
 <prompt>[kqinfo@ubuntu ~]# </prompt><command>ls Deb_Package_Ubuntu10.10_2.6.35-22-server</command>
 lzfs_1.0-2.6.35-22-server.deb  spl_0.5.2-2.6.35-22-server.deb  zfs_0.5.1-2.6.35-22-server.deb
 <prompt>[kqinfo@ubuntu ~]# </prompt><command>cd Deb_Package_Ubuntu10.10_2.6.35-22-server/</command>
 <prompt>[kqinfo@ubuntu:~/Deb_Package_Ubuntu10.10_2.6.35-22-server]# </prompt><command> sudo dpkg -i *</command>
-<replaceable>After successful installation you can check using the command below.
-</replaceable>
+<replaceable>After successful installation you can check using the command below. </replaceable>
 <prompt>[kqinfo@ubuntu:~/Deb_Package_Ubuntu10.10_2.6.35-22-server]# </prompt><command>lsmod |grep zfs </command>
 lzfs                   36473  0 
 zfs                   968970  1 lzfs
@@ -222,19 +233,22 @@ zlib_deflate           21866  1 zfs
 zunicode              323430  1 zfs
 spl                   118572  6 lzfs,zfs,zcommon,znvpair,zavl,zunicode
 </screen>
-<note><para>dpkg might complain about pre-requisites, please install these before proceeding. </para></note>
+<note>
+          <para>dpkg might complain about pre-requisites, please install these before proceeding. </para>
+        </note>
 </para>
-</sect1>
-</chapter>
-
+    </sect1>
+  </chapter>
   <chapter>
     <title>ZFS Support</title>
     <sect1>
       <title>User Registration.</title>
-      <para> Visit <ulink url="http://www.kqstor.com/">http://www.kqstor.com/</ulink> for user registration. Fill necessary
-      information during registration. After submitting you will get an
-      activation mail. Make sure you use the correct email-id during
-      registration else, you won&apos;t be able to activate your account.</para>
+      <para> Visit our website <ulink url="http://www.kqstor.com/">
+          <emphasis role="bold">http://www.kqstor.com/</emphasis>
+        </ulink> for user registration. Fill necessary
+      information during registration. After registration you will get an
+      activation mail. Make sure you have used  correct email-id during
+      registration. Otherwise, you won&apos;t be able to activate your account.</para>
       <para>Once you get registration mail, click the given url to activate
       your account. Once activated, you will be able to view/modify your
       profile, buy licenses etc.</para>
@@ -242,8 +256,8 @@ spl                   118572  6 lzfs,zfs,zcommon,znvpair,zavl,zunicode
     <sect1>
       <title>Getting support.</title>
       <para>To get the support on any ZFS issue, you should have a valid
-      licencse. Depending on your need you can buy Silver, Gold or Platinum
-      License. For more information please visit : <ulink url="http://www.kqstor.com">http://www.kqstor.com</ulink> </para>
+      licence. Depending on your need you can buy Silver, Gold or Platinum
+      License. For more information please visit out websit : <ulink url="http://www.kqstor.com">http://www.kqstor.com</ulink> </para>
       <para>Once you purchase support license you will get mail regarding license credentials. Keep you license credentials secure to avoid misuse of your license. </para>
       <para>After purchasing license you should register your machine with KQ
       Stor support system. To do that please follow the steps mentioned below: </para>
@@ -262,8 +276,7 @@ spl                   118572  6 lzfs,zfs,zcommon,znvpair,zavl,zunicode
         </listitem>
         <listitem>
           <para>Login to superuser on  your system and execute following at command line.</para>
-          <para><command> zfs_manage.py -u *edi -p *pswd -k *pkey
-          --register</command></para>
+          <para><command> zfs_manage.py -u *edi -p *pswd -k *pkey --register</command></para>
         </listitem>
         <listitem>
           <para>If the credentials you have provided are correct then you will
@@ -289,21 +302,22 @@ spl                   118572  6 lzfs,zfs,zcommon,znvpair,zavl,zunicode
         </emphasis></para>
       <itemizedlist>
         <listitem>
-          <para>To get the support you have you have to execute the same
-          command you used for registration.You just need to change <emphasis
-          role="bold">--register</emphasis> option to <emphasis
-          role="bold">--support.</emphasis></para>
+          <para>To get the support you have  to execute the same
+          command that you have  used for registration.You just need to change <emphasis role="bold">--register</emphasis> option to <emphasis role="bold">--support.</emphasis></para>
         </listitem>
         <listitem>
           <para>Follow the instructions given after the execution of the
-          command line. It will ask you to mail to the generated files
-          to<emphasis role="bold"><emphasis role="italic">
-          support@kqinfotech.com.</emphasis></emphasis></para>
+          command line. It will ask you to mail  the generated files
+          to<emphasis role="bold">
+              <emphasis role="italic"><emphasis role="italic">support@kqinfotech.com</emphasis>.</emphasis>
+            </emphasis></para>
         </listitem>
         <listitem>
-          <para>If you find any problem then you can contact to <emphasis
-          role="bold"><emphasis
-          role="italic">support@kqinfotech.com</emphasis></emphasis></para>
+          <para>If you find any problem then you can contact to <emphasis role="bold">
+              <emphasis role="italic">
+                <emphasis role="italic">support@kqinfotech.com</emphasis>
+              </emphasis>
+            </emphasis></para>
         </listitem>
       </itemizedlist>
       <para><emphasis role="bold">
@@ -311,78 +325,88 @@ spl                   118572  6 lzfs,zfs,zcommon,znvpair,zavl,zunicode
         </emphasis></para>
       <itemizedlist>
         <listitem>
-          <para>For un-registration you have you have to execute the same command line as for registration by changing <emphasis role="bold">--register</emphasis> option to <emphasis role="bold">--unregister</emphasis></para>
+          <para>For un-registration  you have to execute the same command line as for registration by changing <emphasis role="bold">--register</emphasis> option to <emphasis role="bold">--unregister</emphasis></para>
         </listitem>
         <listitem>
           <para>Follow the instructions given after the execution of the
-          command line. It will ask you to mail to the generated files to
-          support@kqinfotech.com.</para>
+          command line. It will ask you to mail  the generated files to
+          <emphasis role="bold">
+              <emphasis role="italic">
+                <emphasis role="italic">support@kqinfotech.com</emphasis>
+              </emphasis>
+            </emphasis>.</para>
         </listitem>
       </itemizedlist>
     </sect1>
   </chapter>
-
-
-<chapter><title>FAQ</title>
-  <qandaset defaultlabel="qanda">
-    <qandaentry>
-      <question><para>Where can I get the source code ?</para>
-      </question>
-      <answer><para>The entire source code can be downloaded from
-      <ulink
-      url="https://github.com/zfs-linux">https://github.com/zfs-linux</ulink></para>
-      </answer>
-    </qandaentry>
-    <qandaentry>
-      <question><para>How do I build from the source code?</para>
-      </question>
-      <answer><para>A document describing how you can build is
-      available at <ulink
-      url="https://github.com/zfs-linux/zfs-web/blob/master/dev-ref/documentation.pdf">https://github.com/zfs-linux/zfs-web/blob/master/dev-ref/documentation.pdf</ulink>. We
-      have a script at <ulink
-      url="https://github.com/zfs-linux/misc-scripts/blob/master/install.sh">https://github.com/zfs-linux/misc-scripts/blob/master/install.sh</ulink>
+  <chapter>
+    <title>FAQ</title>
+    <qandaset defaultlabel="qanda">
+      <qandaentry>
+        <question>
+          <para>Where can I get the source code ?</para>
+        </question>
+        <answer>
+          <para>The entire source code can be downloaded from
+      <ulink url="https://github.com/zfs-linux">https://github.com/zfs-linux</ulink></para>
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question>
+          <para>How do I build from the source code?</para>
+        </question>
+        <answer>
+          <para>A document describing how you can build is
+      available at <ulink url="https://github.com/zfs-linux/zfs-web/blob/master/dev-ref/documentation.pdf">https://github.com/zfs-linux/zfs-web/blob/master/dev-ref/documentation.pdf</ulink>. We
+      have a script at <ulink url="https://github.com/zfs-linux/misc-scripts/blob/master/install.sh">https://github.com/zfs-linux/misc-scripts/blob/master/install.sh</ulink>
       which can download and build automatically. These are developer
       tools, please use these with caution.</para>
-      </answer>
-    </qandaentry>
-    <qandaentry>
-      <question> <para>zpool create fails with "dir is not
-      empty"</para>
-      </question>
-      <answer><para>The mount point specified is not empty. Make sure
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question>
+          <para>zpool create fails with &quot;dir is not
+      empty&quot;</para>
+        </question>
+        <answer>
+          <para>The mount point specified is not empty. Make sure
       that the mount point does not contain any files or directories for
       the newly created pool to be mounted. If the mountpoint has any
       files created the mount will fail. This is possible if
       inadvertantly files were created before filesystem was mounted, at
-      a later point if you issue "zfs mount -a" the command will
+      a later point if you issue &quot;zfs mount -a&quot; the command will
       fail.</para>
-      </answer>
-    </qandaentry>
-    <qandaentry>
-      <question> <para>Can you have &KQS; as the root filesystem</para>
-      </question>
-      <answer><para>For the current release this is not possible.  We
-      haven't planned to do this in the near future. If you think this is
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question>
+          <para>Can you have &KQS; as the root filesystem</para>
+        </question>
+        <answer>
+          <para>For the current release this is not possible.  We
+      haven&apos;t planned to do this in the near future. If you think this is
       important please drop us a mail.</para>
-      </answer>
-    </qandaentry>
-    <qandaentry>
-      <question> <para>CIFS support</para>
-      </question>
-      <answer><para>CIFS export via <command>zfs share</command> or
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question>
+          <para>CIFS support</para>
+        </question>
+        <answer>
+          <para>CIFS export via <command>zfs share</command> or
       <command>zfs set sharecifs=on</command> is not supported. However
       sharing with samba will work fine.</para>
-      </answer>
-    </qandaentry>
-    <qandaentry>
-      <question> <para>Direct IO Support</para>
-      </question>
-      <answer><para>Direct IO does not perform direct IO instead falls
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question>
+          <para>Direct IO Support</para>
+        </question>
+        <answer>
+          <para>Direct IO does not perform direct IO instead falls
       back on buffered read/write funtions.</para>
-      </answer>
-    </qandaentry>
-  </qandaset>
-</chapter>
-
-
+        </answer>
+      </qandaentry>
+    </qandaset>
+  </chapter>
 </book>
