@@ -2,7 +2,7 @@
 <!-- This document was created with Syntext Serna Free. --><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "/usr/share/xml/docbook/schema/dtd/4.4/docbookx.dtd" []>
 <book>
   <bookinfo>
-    <title>ZFS Linux Developers Reference</title>
+    <title><graphic fileref="logo.png" align="center" scale="60"/>ZFS Linux Developers Reference</title>
   </bookinfo>
   <chapter>
     <title>Getting Started</title>
@@ -53,10 +53,10 @@ the other list of tools/editors/ides they have found useful.
           <member>zfs (core dmu/dsl functionality)</member>
           <member>lzfs (linux posix layer)</member>
         </simplelist>
-  You can build system from  source in two way :</para>
-      <para>1) You can get script at  https://github.com/zfs-linux/misc-scripts/
-  blob/master/install.sh which can automate the whole process building system from source  the ease of your use.</para>
-      <para>2) Otherwise you can follow the following procedure.</para>
+  You can build from source in two ways : </para>
+      <para>1) Get the script from   https://github.com/zfs-linux/misc-scripts/blob/master/install.sh  and run it.</para>
+      <para> This will  automate the whole build process.</para>
+      <para>2) You can follow the procedure below.</para>
       <para>you need to retrive the sources for all three and compile them. If
   any one of them are missing zfs won&apos;t function. The three
   repositories can be accessed at the following url <ulink url="https://github.com/zfs-linux">https://github.com/zfs-linux</ulink></para>
@@ -191,9 +191,12 @@ spl                   120247  7 lzfs,zfs,zcommon,zunicode,znvpair,zavl,splat
       <para><screen>
 $ sudo apt-get install build-essential devscripts ubuntu-dev-tools debhelper dh-make diff patch cdbs quilt gnupg fakeroot lintian pbuilder piuparts
 
+</screen></para>
+      <para> Install other required packages:</para>
+      <para><screen>
 $ sudo apt-get install gawk uuid-dev linux-headers zlib1g-dev
 </screen></para>
-      <para><emphasis role="bold">* Building deb package for SPL:</emphasis> </para>
+      <para><emphasis role="bold">* Building deb package for SPL:</emphasis></para>
       <para>Clone the repository :</para>
       <para><screen>
 $ git clone https://github.com/zfs-linux/spl.git
@@ -224,7 +227,7 @@ $ git clone https://github.com/zfs-linux/zfs.git
 $ mv zfs/ zfs-0.5.1/
 $ tar czf zfs-0.5.1.tar.gz zfs-0.5.1 
 </screen></para>
-      <para>Make a back copy of of the source :</para>
+      <para>Make a back copy of the source :</para>
       <para><screen>
 $ cp zfs-0.5.1.tar.gz zfs_0.5.1.orig.tar.gz
 
@@ -247,7 +250,7 @@ $ mv lzfs/ lzfs-1.0/
 
 $ tar czf lzfs-1.0.tar.gz lzfs-1.0 
 </screen></para>
-      <para>Make a back copy of of the source. </para>
+      <para>Make a back copy of the source. </para>
       <para><screen>
 $ cp lzfs-1.0.tar.gz lzfs_1.0.orig.tar.gz
 
