@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN"
-"/usr/share/xml/docbook/schema/dtd/4.4/docbookx.dtd">
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- This document was created with Syntext Serna Free. --><!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.4//EN" "/usr/share/xml/docbook/schema/dtd/4.4/docbookx.dtd" []>
 <book>
-<bookinfo>
-<title>ZFS Linux Developers Reference</title>
-</bookinfo>
-
-<chapter><title>Getting Started</title>
-<sect1><title>Maintaining this document</title>
-<para> This document is in the git repository at
+  <bookinfo>
+    <title>ZFS Linux Developers Reference</title>
+  </bookinfo>
+  <chapter>
+    <title>Getting Started</title>
+    <sect1>
+      <title>Maintaining this document</title>
+      <para> This document is in the git repository at
 git://github.com/zfs-linux/zfs-web.git. It is a docbook xml document
 and is maintained by the developer community. This section will cover
 how you can build this document and expand on this document by adding
@@ -16,13 +16,14 @@ to it. Extending this document does not need you to be a expert on xml
 with a few minutes of reading the crash course and setting up the tool
 chain you should be good to go.
 </para>
-<sect2><title>Tool Chain</title>
-<para> In the root dir of the repository there is a script call
+      <sect2>
+        <title>Tool Chain</title>
+        <para> In the root dir of the repository there is a script call
 create.sh. It takes an .xml file as a parameter and compiles are create two files.
 <simplelist>
-  <member>A monolithic html file</member>
-  <member>A pdf document </member>
-</simplelist>
+            <member>A monolithic html file</member>
+            <member>A pdf document </member>
+          </simplelist>
 The first time you try this it is mostly going to fail since the tools
 required to install these are not present. I did not make a note of
 the packages needed to install. You will have to search and install
@@ -30,37 +31,40 @@ the packages until the script runs successfully. Anybody who tries
 this please update the document so that other can just install the
 required packages.
 </para>
-</sect2>
-<sect2><title>Docbook xml crash course</title>
-<para> To get you started there is a short guide in the repository
+      </sect2>
+      <sect2>
+        <title>Docbook xml crash course</title>
+        <para> To get you started there is a short guide in the repository
 located at docs/docbook-crash-course.pdf This is a good reference for
 the various xml tags commonly used. If you are an emacs user using the
 nxml-mode in emacs gives automatic validation of the tags, completion
 on the tags and many other useful features. I would urge other to add
 the other list of tools/editors/ides they have found useful.
 </para>
-</sect2>
-</sect1>
-<sect1><title>Getting and Building from source</title>
-<para>
+      </sect2>
+    </sect1>
+    <sect1>
+      <title>Getting and Building from source</title>
+      <para>
   The ZFS on linux functionality is provided by three modules which
   are maintained in seperate source trees. These are 
   <simplelist>
-    <member>spl (solaris porting layer)</member>
-    <member>zfs (core dmu/dsl functionality)</member>
-    <member>lzfs (linux posix layer)</member>
-  </simplelist>
-  You need to retrive the sources for all three and compile them. If
-  any one of them are missing zfs won't function. The three
-  repositories can be accessed at the following url <ulink
-  url="https://github.com/zfs-linux">https://github.com/zfs-linux</ulink>
-</para>
-
-<para>
+          <member>spl (solaris porting layer)</member>
+          <member>zfs (core dmu/dsl functionality)</member>
+          <member>lzfs (linux posix layer)</member>
+        </simplelist>
+  You can build system from  source in two way :</para>
+      <para>1) You can get script at  https://github.com/zfs-linux/misc-scripts/
+  blob/master/install.sh which can automate the whole process building system from source  the ease of your use.</para>
+      <para>2) Otherwise you can follow the following procedure.</para>
+      <para>you need to retrive the sources for all three and compile them. If
+  any one of them are missing zfs won&apos;t function. The three
+  repositories can be accessed at the following url <ulink url="https://github.com/zfs-linux">https://github.com/zfs-linux</ulink></para>
+      <para>
   The commands and procedures required to build fresh modules from
   source are listed below. Please note that some of the tools used in
   the procedure might not be installed on your machine and the error
-  that result don't always clearly indicate that the package was
+  that result don&apos;t always clearly indicate that the package was
   missing.
   <screen>
 <prompt>/tmp$</prompt> <command> git clone git://github.com/zfs-linux/spl.git</command>
@@ -70,11 +74,13 @@ remote: Compressing objects: 100% (1144/1144), done.
 remote: Total 4266 (delta 3155), reused 4162 (delta 3078)
 Receiving objects: 100% (4266/4266), 1.70 MiB | 123 KiB/s, done.
 Resolving deltas: 100% (3155/3155), done.
+
 <prompt>/tmp$</prompt> <command>git clone git://github.com/zfs-linux/zfs.git</command>
 Initialized empty Git repository in /tmp/zfs/.git/
 remote: Counting objects: 68496, done.
 remote: Compressing objects:   3% (631/21029)  
 .... 
+
 <prompt>/tmp$</prompt> <command>git clone git://github.com/zfs-linux/lzfs.git</command>
 Initialized empty Git repository in /tmp/lzfs/.git/
 remote: Counting objects: 173, done.
@@ -82,6 +88,7 @@ remote: Compressing objects: 100% (152/152), done.
 remote: Total 173 (delta 92), reused 38 (delta 16)
 Receiving objects: 100% (173/173), 199.19 KiB | 103 KiB/s, done.
 Resolving deltas: 100% (92/92), done.
+
 <prompt>/tmp$ </prompt><command>cd spl</command>
 <prompt>/tmp/spl$ </prompt><command>./configure --with-linux=/lib/modules/2.6.32-24-server/build</command>
 checking metadata... yes
@@ -91,18 +98,19 @@ checking target system type... x86_64-unknown-linux-gnu
 checking whether to enable maintainer-specific portions of Makefiles... no
 checking for a BSD-compatible install... /usr/bin/install -c
 ....
+
 <prompt>/tmp/spl$ </prompt><command>make</command>
 make  all-recursive
-make[1]: Entering directory `/tmp/spl'
+make[1]: Entering directory `/tmp/spl&apos;
 Making all in lib
-make[2]: Entering directory `/tmp/spl/lib'
+make[2]: Entering directory `/tmp/spl/lib&apos;
 /bin/bash ../libtool  --tag=CC --silent  --mode=compile gcc -DHAVE_CONFIG_H -include
 ../spl_config.h    -Wall -Wshadow -Wstrict-prototypes -fno-strict-aliasing
 -D__USE_LARGEFILE64 -DNDEBUG -g -O
 ....
+
 <prompt>/tmp/spl$ </prompt><command>cd ../zfs/</command>
-<prompt>/tmp/zfs$ </prompt><command>./configure --with-linux=/lib/modules/2.6.32-24-server/build
-                      --with-spl=/tmp/spl/</command>
+<prompt>/tmp/zfs$ </prompt><command>./configure --with-linux=/lib/modules/2.6.32-24-server/build --with-spl=/tmp/spl/</command>
 checking metadata... yes
 checking build system type... x86_64-unknown-linux-gnu
 checking host system type... x86_64-unknown-linux-gnu
@@ -111,16 +119,14 @@ checking whether to enable maintainer-specific portions of Makefiles... no
 ....
 <prompt>/tmp/zfs$ </prompt><command>make</command>
 make  all-recursive
-make[1]: Entering directory `/tmp/zfs'
+make[1]: Entering directory `/tmp/zfs&apos;
 Making all in etc
-make[2]: Entering directory `/tmp/zfs/etc'
-make[2]: Nothing to be done for `all'.
-make[2]: Leaving directory `/tmp/zfs/etc'
+make[2]: Entering directory `/tmp/zfs/etc&apos;
+make[2]: Nothing to be done for `all&apos;.
+make[2]: Leaving directory `/tmp/zfs/etc&apos;
 ....
 <prompt>/tmp/zfs$ </prompt><command>cd ../lzfs/</command>
-<prompt>/tmp/lzfs$ </prompt><command>./configure --with-linux=/lib/modules/2.6.32-24-server/build
-                       --with-spl=/tmp/spl/ 
-                       --with-zfs=/tmp/zfs/</command>
+<prompt>/tmp/lzfs$ </prompt><command>./configure --with-linux=/lib/modules/2.6.32-24-server/build --with-spl=/tmp/spl/ --with-zfs=/tmp/zfs/</command>
 checking metadata... yes
 checking build system type... x86_64-unknown-linux-gnu
 checking host system type... x86_64-unknown-linux-gnu
@@ -130,9 +136,9 @@ checking whether build environment is sane... yes
 ....
 <prompt>/tmp/lzfs$ </prompt><command>make</command>
 make  all-recursive
-make[1]: Entering directory `/tmp/lzfs'
+make[1]: Entering directory `/tmp/lzfs&apos;
 Making all in module
-make[2]: Entering directory `/tmp/lzfs/module'
+make[2]: Entering directory `/tmp/lzfs/module&apos;
 make -C /lib/modules/2.6.32-24-server/build SUBDIRS=`pwd` V=1 modules
 ....
 <prompt>/tmp/lzfs$ </prompt><command>cd ../zfs/scripts/</command>
@@ -148,80 +154,198 @@ Loading znvpair (/tmp/zfs/module/nvpair/znvpair.ko)
 <prompt>/tmp/zfs/scripts$ </prompt><command>cd /tmp/spl/</command>
 <prompt>/tmp/spl$ </prompt><command>make install</command>
 Making install in lib
-make[1]: Entering directory `/tmp/spl/lib'
-make[2]: Entering directory `/tmp/spl/lib'
-make[2]: Nothing to be done for `install-exec-am'.
-make[2]: Nothing to be done for `install-data-am'.
+make[1]: Entering directory `/tmp/spl/lib&apos;
+make[2]: Entering directory `/tmp/spl/lib&apos;
+make[2]: Nothing to be done for `install-exec-am&apos;.
+make[2]: Nothing to be done for `install-data-am&apos;.
 ....
 <prompt>/tmp/spl$ </prompt><command>cd ../zfs/</command>
 <prompt>/tmp/zfs$ </prompt><command>make install</command>
 Making install in etc
-make[1]: Entering directory `/tmp/zfs/etc'
-make[2]: Entering directory `/tmp/zfs/etc'
-test -z "/etc" || /bin/mkdir -p "/etc"
-/bin/mkdir -p '/etc/../etc/udev/rules.d'
+make[1]: Entering directory `/tmp/zfs/etc&apos;
+make[2]: Entering directory `/tmp/zfs/etc&apos;
+test -z &quot;/etc&quot; || /bin/mkdir -p &quot;/etc&quot;
+/bin/mkdir -p &apos;/etc/../etc/udev/rules.d&apos;
 ....
 <prompt>/tmp/zfs$ </prompt><command>cd ../lzfs/</command>
 <prompt>/tmp/lzfs$ </prompt><command>make install</command>
 Making install in module
-make[1]: Entering directory `/tmp/lzfs/module'
+make[1]: Entering directory `/tmp/lzfs/module&apos;
 make -C /lib/modules/2.6.32-24-server/build SUBDIRS=`pwd` \
-		INSTALL_MOD_PATH= \
-		INSTALL_MOD_DIR=addon/lzfs modules_install
+  INSTALL_MOD_PATH= \
+  INSTALL_MOD_DIR=addon/lzfs modules_install
 ....
 <prompt>/tmp/lzfs$ </prompt><command>lsmod | grep lzfs</command>
 lzfs                   28371  0 
 zfs                   964150  1 lzfs
 spl                   120247  7 lzfs,zfs,zcommon,zunicode,znvpair,zavl,splat
-  </screen>
+  
+</screen>
   
 </para>
-</sect1>
+    </sect1>
+    <sect1>
+      <title>Building Debian and RPM Packages</title>
+      <para><emphasis role="bold">Building Debian Packages:</emphasis></para>
+      <para>Install the required packages to build debian packages :</para>
+      <para><screen>
+$ sudo apt-get install build-essential devscripts ubuntu-dev-tools debhelper dh-make diff patch cdbs quilt gnupg fakeroot lintian pbuilder piuparts
 
-<sect1><title>Installing Startup Scripts</title>
-<para> The binaries have been installed. Currently the make system
-does not intall the startup scritps these have to be done manually.
-</para>
-<para>Follow this procedure for Fedora</para>
-  <screen>
-<prompt>/tmp$</prompt> <command> chkconfig --add zfsload</command>
-  </screen>
+$ sudo apt-get install gawk uuid-dev linux-headers zlib1g-dev
+</screen></para>
+      <para><emphasis role="bold">* Building deb package for SPL:</emphasis> </para>
+      <para>Clone the repository :</para>
+      <para><screen>
+$ git clone https://github.com/zfs-linux/spl.git
+</screen></para>
+      <para>Debian style packaging needs the tar.gz file for the source code:</para>
+      <para><screen>
+$ mv spl/ spl-0.5.2/
+$ tar czf spl-0.5.2.tar.gz spl-0.5.2/
+</screen></para>
+      <para>Make a back copy  of the source :</para>
+      <para><screen>
+$ cp spl-0.5.2.tar.gz spl_0.5.2.orig.tar.gz
 
-<para>Follow this procedure for Ubuntu</para>
-  <screen>
-<prompt>/tmp$</prompt> <command> cp lzfs/scripts/zfsload-ubuntu /etc/init.d/zfsload</command>
-<prompt>/tmp$</prompt> <command> chown root /etc/init.d/zfsload</command>
-<prompt>/tmp$</prompt> <command> chmod +x /etc/init.d/zfsload</command>
-<prompt>/tmp$</prompt> <command> update-rc.d zfsload defaults</command>
-<prompt>/tmp$</prompt> <command> service zfsload start</command>
-  </screen>
+$ cd spl-0.5.2/</screen></para>
+      <para>Run  following command to create debian package</para>
+      <para><screen>
+$ sudo debuild -i -us -uc
+</screen></para>
+      <para>Package will be created in the parent directory :</para>
+      <para><emphasis role="bold">Building deb package for ZFS :</emphasis></para>
+      <para>Install the earlier created SPL package, as it is needed to build ZFS package.</para>
+      <para>Clone the repository : </para>
+      <para><screen>
+$ git clone https://github.com/zfs-linux/zfs.git
+</screen></para>
+      <para>Debian style packaging needs the tar.gz file for the source code.</para>
+      <para><screen>
+$ mv zfs/ zfs-0.5.1/
+$ tar czf zfs-0.5.1.tar.gz zfs-0.5.1 
+</screen></para>
+      <para>Make a back copy of of the source :</para>
+      <para><screen>
+$ cp zfs-0.5.1.tar.gz zfs_0.5.1.orig.tar.gz
 
-</sect1>
-</chapter>
+$ cd zfs-0.5.1
+</screen></para>
+      <para>Run the following command to create debian package :</para>
+      <para><screen>
+$ sudo debuild -i -us -uc
+</screen></para>
+      <para>Package will be create in  parent directory.</para>
+      <para><emphasis role="bold">Building deb package for LZFS:</emphasis></para>
+      <para>Install the earlier created SPL and ZFS packages, as it is needed to build LZFS package.</para>
+      <para>Clone the repository: </para>
+      <para><screen>
+$  git clone https://github.com/zfs-linux/lzfs.git
+</screen></para>
+      <para>Debian style packaging needs the tar.gz file for the source code.</para>
+      <para><screen>
+$ mv lzfs/ lzfs-1.0/
 
-<chapter><title>Debugging Infrastructure</title>
-<sect1><title>printk, cmn_err and dmesg</title>
-<para> If you have worked on this a short time you would realize that
+$ tar czf lzfs-1.0.tar.gz lzfs-1.0 
+</screen></para>
+      <para>Make a back copy of of the source. </para>
+      <para><screen>
+$ cp lzfs-1.0.tar.gz lzfs_1.0.orig.tar.gz
+
+$ cd lzfs-1.0
+</screen></para>
+      <para>Run  following command to create debian package :</para>
+      <para><screen>$ sudo debuild -i -us -uc</screen></para>
+      <para>Package will be created in  parent directory.</para>
+      <para><emphasis role="bold">Building RPM Packages :</emphasis></para>
+      <para>Install the required packages to build RPM packages:</para>
+      <para><screen>
+$ yum install rpm-build
+</screen></para>
+      <para><emphasis role="bold">Building RPM package for SPL</emphasis></para>
+      <para>Clone the repository: </para>
+      <para><screen>
+
+$ git clone https://github.com/zfs-linux/spl.git
+</screen></para>
+      <para>Run following commands:-</para>
+      <para><screen>
+$ cd spl
+$ ./configure
+</screen></para>
+      <para>To create the RPM run </para>
+      <para><screen>
+$ make rpm
+</screen></para>
+      <para><emphasis role="bold">Building RPM package for ZFS</emphasis></para>
+      <para>Clone the repository </para>
+      <para><screen>
+$ git clone https://github.com/zfs-linux/zfs.git
+
+$ cd zfs
+</screen></para>
+      <para>Run ./configure with specific SPL source against which we want to compile the ZFS.</para>
+      <para><screen>
+$ ./configure --withs-spl=&lt;SPL_SOURCE_CODE&gt;
+</screen></para>
+      <para>Or you can install the SPL rpm and run </para>
+      <para><screen>
+$ ./configure
+</screen></para>
+      <para>To create the RPM run </para>
+      <para><screen>
+$ make rpm
+</screen></para>
+      <para><emphasis role="bold">Building RPM package for LZFS:</emphasis></para>
+      <para>Clone the repository </para>
+      <para><screen>
+$ git clone https://github.com/zfs-linux/lzfs.git
+
+$ cd lzfs
+
+</screen></para>
+      <para>Run ./configure with specific SPL source and ZFS source against which we want to compile the LZFS.</para>
+      <para><screen>
+$ ./configure --withs-spl=&lt;SPL_SOURCE_CODE&gt; --with-zfs=&lt;ZFS_SOURCE_CODE&gt;
+</screen></para>
+      <para>Or you can install the SPL and ZFS rpms and run </para>
+      <para><screen>
+$ ./configure
+</screen></para>
+      <para>To create the RPM run </para>
+      <para><screen>
+$ make rpm
+</screen></para>
+      <para/>
+      <para/>
+      <para/>
+    </sect1>
+  </chapter>
+  <chapter>
+    <title>Debugging Infrastructure</title>
+    <sect1>
+      <title>printk, cmn_err and dmesg</title>
+      <para> If you have worked on this a short time you would realize that
 although cmn_err prints to the dmesg buffer it is not very
 reliable. You cannot be sure that messages have not been
 skipped. There is a parallel infrastructure in SPL which gives much
 more reliable logging. 
 </para>
-<para> The messages from cmn_err depending on the settings go to the
+      <para> The messages from cmn_err depending on the settings go to the
 dmesg buffer as well as the spl log buffer. This spl log buffer is in
-core. To dump this to a file you need to execute "echo 1
->/proc/sys/kernel/spl/debug/dump" This will create a binary file in
+core. To dump this to a file you need to execute &quot;echo 1
+&gt;/proc/sys/kernel/spl/debug/dump&quot; This will create a binary file in
 /tmp/spl*. Use the spl command to cover this binary file to text.
 </para>
-</sect1>
-<sect1><title>How to debug using printk and cmn_err</title>
- <para> Put the cmn_err statements in the path code which you want to debug </para>
- <screen>
+    </sect1>
+    <sect1>
+      <title>How to debug using printk and cmn_err</title>
+      <para> Put the cmn_err statements in the path code which you want to debug </para>
+      <screen>
 <prompt>/tmp$</prompt> <command> dmesg -c </command>
 <prompt>/tmp$</prompt> <command> The command by which you are expecting the cmn_err messages </command>
-<prompt>/tmp$</prompt> <command> echo 1>/proc/sys/kernel/spl/debug/dump </command>
+<prompt>/tmp$</prompt> <command> echo 1&gt;/proc/sys/kernel/spl/debug/dump </command>
 <prompt>/tmp$</prompt> <command> spl /tmp/spl-log.1293106961.31507 </command>
  </screen>
-</sect1>
-</chapter>
+    </sect1>
+  </chapter>
 </book>
